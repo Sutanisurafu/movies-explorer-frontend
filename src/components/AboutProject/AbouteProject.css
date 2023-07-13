@@ -1,0 +1,68 @@
+.about-project{
+  display: flex;
+  flex-direction: column;
+  margin: auto;
+  width: 1140px;
+}
+
+.about-project__title{
+  color: #000;
+  font-family: Inter;
+  font-size: 22px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  letter-spacing: -0.88px;
+  border-bottom: 1px solid black;
+  margin: 70px 0px;
+  padding-bottom: 23px;
+}
+
+.about-project__facts {
+  display: grid;
+  grid-template-columns: auto auto;
+  grid-column-gap: 40px;
+  grid-row-gap: 26px;
+}
+
+.about-project__facts-title {
+  margin: 0;
+}
+
+.about-project__facts-item {
+  margin: 0;
+}
+
+.about-project__schedule {
+  margin-top: 110px;
+  display: grid;
+  grid-template-columns: 1fr 4fr;
+}
+
+.about-project__schedule-title{
+  margin: 0;
+  background-color: #F2F2F2;
+  text-align: center;
+  color: #000;
+  font-family: Inter;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  padding: 10px;
+  margin-bottom: 14px;
+}
+.about-project__schedule-title:first-of-type{
+  background-color: #2BE080;
+}
+
+.about-project__schedule-item{
+  margin: 0;
+  color: #000;
+  text-align: center;
+  font-family: Inter;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+}

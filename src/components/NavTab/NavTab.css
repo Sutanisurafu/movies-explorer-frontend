@@ -1,0 +1,26 @@
+.promo__nav-container {
+  display: flex;
+  align-self: center;
+  padding: 0;
+}
+
+.promo__nav-btn {
+  width: 96px;
+  height: 30px;
+  margin-right: 10px;
+  background-color: #E8E8E8;
+  list-style-type: none;
+  text-align: center;
+}
+
+.promo_nav-link {
+  text-decoration: none;
+  color: #000;
+  font-family: Inter;
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 16px;
+  text-decoration: none;
+  border-radius: 5px;
+}
