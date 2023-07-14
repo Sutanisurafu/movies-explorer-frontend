@@ -1,0 +1,43 @@
+.about-me {
+  display: flex;
+  flex-direction: column;
+  margin: auto;
+  width: 1140px;
+}
+
+.student-card {
+  display: flex;
+  justify-content: space-between;
+}
+
+.student-card__text-container {
+  max-width: 600px;
+}
+
+.student-card__text-title {
+  color: #000;
+  font-family: Inter;
+  font-size: 50px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 58px;
+  letter-spacing: -2px;
+}
+
+.student-card__text-subtitle {
+  color: #000;
+  font-family: Inter;
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 20px;
+}
+
+.student-card__text-paragraph {
+  color: #000;
+  font-family: Inter;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 22px;
+}

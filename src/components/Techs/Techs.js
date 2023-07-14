@@ -1,19 +1,22 @@
 import React from "react";
+import SectionTitle from "../SectionTitle/SectionTitle";
 
 function Techs() {
   return (
 <>
-    <section id='techs'>
-    <h2>Технологии</h2>
-    <h3>7 технологий</h3>
-    <p>На курсе веб-разработки мы освоили технологии, которые применили в дипломном проекте.</p>
-    <div>HTML</div>
-    <div>CSS</div>
-    <div>JS</div>
-    <div>React</div>
-    <div>Git</div>
-    <div>Express.js</div>
-    <div>mongoDB</div>
+    <section className="techs" id='techs'>
+      <SectionTitle title={"Технологии"}/>
+      <h3 className="techs__title">7 технологий</h3>
+      <p className="techs__text">На курсе веб-разработки мы освоили технологии, которые применили в дипломном проекте.</p>
+      <ul className="techs__container">
+        <li className="techs__item">HTML</li>
+        <li className="techs__item">CSS</li>
+        <li className="techs__item">JS</li>
+        <li className="techs__item">React</li>
+        <li className="techs__item">Git</li>
+        <li className="techs__item">Express.js</li>
+        <li className="techs__item">mongoDB</li>
+      </ul>
     </section>
 </>
   )
