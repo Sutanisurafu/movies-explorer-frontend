@@ -7,12 +7,15 @@ function Footer({ onExit, profileEmail }) {
 
   return (
     <footer className="footer">
-      <div className="footer-title">Учебный проект Яндекс.Практикум х BeatFilm.</div>
-      <div className="footer__caption">©2020</div>
-      <div className="footer-links">
-      <caption>Яндекс.практикум</caption>
-      <caption>Github</caption>
+      <h2 className="footer__title">Учебный проект Яндекс.Практикум х BeatFilm.</h2>
+      <div className="footer__container">
+          <caption className="footer__caption">©2020</caption>
+          <ul className="footer__links">
+            <li className="footer__links-item">Яндекс.практикум</li>
+            <li className="footer__links-item">Github</li>
+          </ul>
       </div>
+
     </footer>
   );
 }

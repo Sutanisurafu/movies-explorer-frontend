@@ -9,6 +9,7 @@
 @import url(../src/components/Techs/Techs.css);
 @import url(../src/components/AboutMe/AboutMe.css);
 @import url(../src/components/Portfolio/Protfolio.css);
+@import url(../src/components/Footer/Footer.css);
 body {
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
