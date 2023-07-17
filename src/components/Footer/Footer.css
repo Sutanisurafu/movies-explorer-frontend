@@ -6,21 +6,19 @@
   margin-top: 45px;
   max-width: 1200px;
   margin-bottom: 41px;
-  align-self: flex-start;
   text-align: center;
-  align-items: center;
 }
 
 .footer__container {
   display: flex;
-  align-items:center;
+  align-items: center;
   justify-content: space-between;
-  width: 1140px;
+  margin: 0 5vw;
 }
 
 
 .footer__title {
-  margin: 0;
+  margin: 0 5vw;
   color: #A0A0A0;
   text-align: center;
   font-family: Inter;
@@ -30,7 +28,7 @@
   line-height: normal;
   border-bottom: 1px solid #E8E8E8;
   padding: 80px 0 20px 0;
-  width: 1140px;
+  max-width: 100%;
 }
 
 .footer__caption {
@@ -45,7 +43,6 @@
 .footer__links {
   display: flex;
   list-style-type: none;
-  justify-content: space-between;
 }
 
 .footer__links-item {

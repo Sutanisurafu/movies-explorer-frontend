@@ -1,0 +1,21 @@
+.cardlist-section {
+  border-top: 1px solid #E8E8E8;
+  padding-top: 80px;
+  margin: auto;
+  margin-top: 70px;
+  max-width: 1140px;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  column-gap: 24px;
+  row-gap: 30px;
+}
+
+.card {
+  position: relative;
+  display: grid;
+  grid-template-columns: auto;
+  grid-auto-rows: auto min-content;
+  max-width: 282px;
+  background-color: white;
+  border-radius: 10px;
+}

@@ -10,13 +10,18 @@
 @import url(../src/components/AboutMe/AboutMe.css);
 @import url(../src/components/Portfolio/Protfolio.css);
 @import url(../src/components/Footer/Footer.css);
+@import url(../src/components/Movies/Movies.css);
+@import url(../src/components/SearchForm/SearchFom.css);
+@import url(../src/components/MoviesCardList/MoviesCardList.css);
+@import url(../src/components/MovieCard/MovieCard.css);
 body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+    margin: auto;
+    max-width: 1280px;
+    min-width: 320px;
+    padding: 0;
+    font-family: "Inter", "Arial", "sans-serif";
+    text-rendering: optimizeLegibility;
+
 }
 
 code {

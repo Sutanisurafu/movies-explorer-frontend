@@ -1,0 +1,39 @@
+.movie-card {
+  max-width: 364px;
+  max-height: 270px;
+
+}
+
+.movie-card__header-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.movie-card__title {
+  color: #000;
+  font-family: Inter;
+  font-size: 15px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+}
+
+.movie-card__duration {
+color: #A0A0A0;
+font-family: Inter;
+font-size: 11px;
+font-style: normal;
+font-weight: 400;
+line-height: normal;
+}
+
+.movie-card__favorite-btn {
+  width: 30px;
+  height: 30px;
+  background-image: url(../../images/favorite-btn.svg);
+  background-repeat: no-repeat;
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+}
