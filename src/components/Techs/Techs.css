@@ -1,8 +1,11 @@
 .techs {
   display: flex;
   flex-direction: column;
-  margin: auto;
-  width: 1140px;
+  padding: 0 70px;
+  margin-top: 110px;
+  padding-bottom: 100px;
+  max-width: 100vw;
+  background-color: #F5F5F5;
 }
 
 .techs__title {
@@ -34,9 +37,11 @@
 }
 
 .techs__container {
+  margin-top: 100px;
   display: flex;
   align-self: center;
   padding: 0;
+  flex-wrap: wrap;
 }
 
 .techs__item {

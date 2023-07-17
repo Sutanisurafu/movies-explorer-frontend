@@ -1,15 +1,15 @@
 import React from "react";
 import SearchForm from "../SearchForm/SearchFom";
 import MoviesCardList from "../MoviesCardList/MoviesCardList";
-import {moviesData} from "../../utils/constants"
+import {savedMoviesData} from "../../utils/constants"
 
-function Movies() {
+function SavedMovies() {
   return (
-          <div className="section-movies">
+          <div className="section-favorite">
             <SearchForm/>
             <MoviesCardList
-            moviesData={moviesData}/>
+            moviesData={savedMoviesData}/>
           </div>
   )
 }
-export default Movies;
+export default SavedMovies;

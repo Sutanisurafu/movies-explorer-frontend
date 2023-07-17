@@ -2,10 +2,8 @@
   background-color: #FAFAFA;
   display: flex;
   flex-direction: column;
-  margin: auto;
   margin-top: 45px;
-  max-width: 1200px;
-  margin-bottom: 41px;
+  max-width: 100vw;
   text-align: center;
 }
 

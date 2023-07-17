@@ -1,13 +1,13 @@
 import React from "react";
 import MovieCard from "../MovieCard/MovieCard";
-import {movies} from "../../utils/constants"
 
 
-function MoviesCardList() {
+
+function MoviesCardList({moviesData}) {
 
   return (
     <div className="cardlist-section">
-      {movies.map((movieCard) => {
+      {moviesData.map((movieCard) => {
         return (
           <MovieCard
             key={movieCard.movieId}

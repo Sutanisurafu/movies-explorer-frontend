@@ -1,7 +1,8 @@
-.section-movies {
+.section-favorite {
   display: flex;
   flex-direction: column;
   margin: auto;
   padding-top: 30px;
   max-width: 1140px;
+  box-sizing: border-box;
 }

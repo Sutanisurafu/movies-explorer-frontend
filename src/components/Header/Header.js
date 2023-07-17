@@ -11,6 +11,7 @@ function Header() {
     console.log(location.pathname);
     switch (location.pathname) {
       case '/movies':
+      case '/saved-movies':
         setHeaderContainer(
           <>
             <nav className="header__nav header__nav_type_logged">
@@ -47,7 +48,7 @@ function Header() {
 
   return (
     <header className="header">
-      <NavLink to="/" className="header__login">
+      <NavLink to="/" className="header__logo-link">
         <Logo className="header__logo" />
       </NavLink>
       {headerContainer}

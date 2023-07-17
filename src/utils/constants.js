@@ -12,8 +12,49 @@ import movieImage11 from "../images/movieImg11.png";
 import movieImage12 from "../images/movieImg12.png";
 
 
+export const savedMoviesData = [
+  {
+    country: "ekb",
+    director: "ya",
+    duration: "1ч 47м",
+    year: "2014",
+    description: "testMovie",
+    image: movieImage4,
+    trailerLink: "https://www.youtube.com/watch?v=QBp4-yXFNNc",
+    thumbnail: "https://www.youtube.com/watch?v=QBp4-yXFNNc",
+    movieId: "156232145",
+    nameRU: "33 слова о дизайне",
+    nameEN: "movie"
+  },
+  {
+    country: "ekb",
+    director: "ya",
+    duration: "1ч 47м",
+    year: "2014",
+    description: "testMovie",
+    image: movieImage5,
+    trailerLink: "https://www.youtube.com/watch?v=QBp4-yXFNNc",
+    thumbnail: "https://www.youtube.com/watch?v=QBp4-yXFNNc",
+    movieId: "12321745",
+    nameRU: "33 слова о дизайне",
+    nameEN: "movie"
+  },
+  {
+    country: "ekb",
+    director: "ya",
+    duration: "1ч 47м",
+    year: "2014",
+    description: "testMovie",
+    image: movieImage6,
+    trailerLink: "https://www.youtube.com/watch?v=QBp4-yXFNNc",
+    thumbnail: "https://www.youtube.com/watch?v=QBp4-yXFNNc",
+    movieId: "123472145",
+    nameRU: "33 слова о дизайне",
+    nameEN: "movie"
+  },
+]
 
-export const movies = [
+export const moviesData = [
 
   {
     country: "ekb",

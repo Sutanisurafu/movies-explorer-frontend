@@ -1,7 +1,6 @@
 .movie-card {
   max-width: 364px;
   max-height: 270px;
-
 }
 
 .movie-card__header-container {
@@ -36,4 +35,10 @@ line-height: normal;
   background-color: transparent;
   border: none;
   cursor: pointer;
+}
+
+@media screen and (max-width: 500px) {
+  .movie-card {
+
+  }
 }
