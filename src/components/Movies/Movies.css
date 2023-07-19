@@ -2,6 +2,22 @@
   display: flex;
   flex-direction: column;
   margin: auto;
-  padding-top: 30px;
+  padding-top: 50px;
   max-width: 1140px;
+}
+
+.section-movies__more-btn {
+  width: 320px;
+  height: 36px;
+  margin: 82px auto 35px;
+  background-color: transparent;
+  border: 1px solid #E8E8E8;
+  border-radius: 5px;
+  color: #000;
+text-align: center;
+font-family: Inter;
+font-size: 12px;
+font-style: normal;
+font-weight: 500;
+line-height: normal;
 }

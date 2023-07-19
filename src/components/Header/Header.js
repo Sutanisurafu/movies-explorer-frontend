@@ -2,18 +2,21 @@ import { useLocation } from 'react-router-dom';
 import React from 'react';
 import { NavLink } from 'react-router-dom';
 import { ReactComponent as Logo } from '../../images/logo.svg';
+import { useResize } from '../../hooks/use-resize';
 
 function Header() {
   const [headerContainer, setHeaderContainer] = React.useState(<></>);
   const location = useLocation();
+  const { width, isScreenSm, isScreenMd, isScreenLg, isScreenXl } = useResize();
 
+   if (width < 800) {console.log("МЕНЯЕМ")}
   function handleHeaderChange() {
-    console.log(location.pathname);
     switch (location.pathname) {
       case '/movies':
       case '/saved-movies':
+      case '/profile':
         setHeaderContainer(
-          <>
+          <div className='header__container'>
             <nav className="header__nav header__nav_type_logged">
               <NavLink to="/movies" className="header__nav-item">
                 Фильмы
@@ -25,7 +28,7 @@ function Header() {
             <NavLink to="/user" className="header__user-btn">
               Аккаунт
             </NavLink>
-        </>
+        </div>
         );
         break;
       default:

@@ -3,7 +3,6 @@
   display: flex;
   flex-direction: column;
   margin-top: 45px;
-  max-width: 100vw;
   text-align: center;
 }
 
@@ -11,12 +10,12 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  margin: 0 5vw;
+  margin: 0 70px;
 }
 
 
 .footer__title {
-  margin: 0 5vw;
+  margin: 0 70px;
   color: #A0A0A0;
   text-align: center;
   font-family: Inter;

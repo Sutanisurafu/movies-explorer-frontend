@@ -9,14 +9,14 @@ const Login = () => {
         <Logo className="login__logo" />
       </NavLink>
       <h1 className="login__title">Рады видеть!</h1>
-        <span className="login__label">E-mail</span>
+        <label className="login__label">E-mail</label>
         <input
           type="email"
           name="email"
           className="login__input"
           required={true}
         ></input>
-      <span className="login__label">Пароль</span>
+      <label className="login__label">Пароль</label>
       <input
         type="password"
         name="password"

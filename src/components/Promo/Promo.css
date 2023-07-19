@@ -1,7 +1,7 @@
 .promo {
   display: flex;
   flex-direction: column;
-  margin: auto;
+  margin: 0 40px;
   margin-bottom: 10px;
   max-width: 1200px;
   background-color: #F5F5F5;

@@ -3,13 +3,14 @@ import MovieCard from "../MovieCard/MovieCard";
 
 
 
-function MoviesCardList({moviesData}) {
+function MoviesCardList({moviesData, isSaved}) {
 
   return (
     <div className="cardlist-section">
       {moviesData.map((movieCard) => {
         return (
           <MovieCard
+            isSaved={isSaved}
             key={movieCard.movieId}
             card={movieCard}/>
         )

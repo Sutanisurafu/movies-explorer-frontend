@@ -8,7 +8,9 @@ function Movies() {
           <div className="section-movies">
             <SearchForm/>
             <MoviesCardList
+            isSaved={false}
             moviesData={moviesData}/>
+            <button className="section-movies__more-btn">Еще</button>
           </div>
   )
 }

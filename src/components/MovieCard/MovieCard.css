@@ -7,6 +7,7 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
+  padding: 0 14px;
 }
 
 .movie-card__title {
@@ -16,9 +17,11 @@
   font-style: normal;
   font-weight: 500;
   line-height: normal;
+  margin: 14px 0 0 0;
 }
 
 .movie-card__duration {
+  margin: 9 0 14 0;
 color: #A0A0A0;
 font-family: Inter;
 font-size: 11px;
@@ -31,6 +34,16 @@ line-height: normal;
   width: 30px;
   height: 30px;
   background-image: url(../../images/favorite-btn.svg);
+  background-repeat: no-repeat;
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+}
+
+.movie-card__favorite-delete {
+  width: 30px;
+  height: 30px;
+  background-image: url(../../images/deleteFavorite.png);
   background-repeat: no-repeat;
   background-color: transparent;
   border: none;

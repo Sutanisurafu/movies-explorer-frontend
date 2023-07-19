@@ -215,3 +215,10 @@ export const moviesData = [
 
 ]
 
+//breakpoints
+export const SCREEN_MOBILE = 400;
+export const SCREEN_S = 576;
+export const SCREEN_M = 768;
+export const SCREEN_L = 992;
+export const SCREEN_XL = 1280;
+

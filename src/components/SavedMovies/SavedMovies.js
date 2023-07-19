@@ -8,6 +8,7 @@ function SavedMovies() {
           <div className="section-favorite">
             <SearchForm/>
             <MoviesCardList
+            isSaved={true}
             moviesData={savedMoviesData}/>
           </div>
   )
