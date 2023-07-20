@@ -56,3 +56,19 @@
 .footer__links-item:last-of-type {
   margin-right: 0px;
 }
+
+@media screen and (max-width: 900px) {
+  .footer {
+    background-color: transparent;
+    margin-top: 35px;
+  }
+
+  .footer__title {
+    margin: 0 30px;
+
+  }
+
+  .footer__container {
+    margin: 0 30px;
+  }
+}

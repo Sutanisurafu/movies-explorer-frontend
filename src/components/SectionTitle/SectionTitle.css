@@ -10,5 +10,10 @@
   margin: 100px 0 70px 0;
   padding-bottom: 23px;
   max-width: 1140px;
-  
+}
+
+@media screen and (max-width: 900px) {
+  .section-title {
+    margin-top: 80px;
+  }
 }

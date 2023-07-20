@@ -1,5 +1,5 @@
 .portfolio {
-  margin-bottom: 55px;
+  margin-bottom: 44px;
 }
 
 .portfolio__title {
@@ -10,6 +10,7 @@
   font-weight: 400;
   line-height: 20px;
   margin-top: 100px;
+  margin-bottom: 24px;
 }
 
 .portfolio__container {
@@ -20,7 +21,7 @@
 .portfolio__item {
   list-style-type: none;
   border-bottom: 1px solid #E8E8E8;
-  padding: 18px 0;
+  padding: 20px 0;
 }
 
 .portfolio__item:last-of-type {
@@ -42,4 +43,30 @@
 
 .portfolio__item-arrow {
   align-self: center;
+}
+
+@media screen and (max-width: 900px) {
+  .portfolio{
+    margin-bottom: 20px;
+  }
+  .portfolio__title {
+    margin-top: 90px;
+    margin-bottom: 26px;
+  }
+
+  .portfolio__item {
+  
+  }
+
+  .portfolio__item-link {
+    font-size: 28px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 50px; /* 178.571% */
+  letter-spacing: -1.12px;
+  }
+
+  .portfolio__item-arrow {
+
+  }
 }

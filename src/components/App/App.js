@@ -9,18 +9,34 @@ import SavedMovies from '../SavedMovies/SavedMovies'
 import Profile from '../Profile/Profile';
 import Login from '../Login/Login';
 import Register from '../Register/Register';
+import PopupWithNav from '../PopupWithNav/PopupWithNav';
 
 function App() {
+  const [isPopupWithNavOpen, setIsPopupWithNavOpen] = React.useState(false);
+
+  const handleNavClick = () => {
+    setIsPopupWithNavOpen(true);
+
+  }
+  
+  const handleClosePopup = () => {
+    setIsPopupWithNavOpen(false);
+  }
+
   return (
     <div className="page">
       <Routes>
         <Route path='/' element={<><Header/><Main /><Footer /></>} />
-        <Route path='/movies' element={<><Header /><Movies /><Footer /></>} />
+        <Route path='/movies' element={<><Header onNav={handleNavClick} /><Movies /><Footer /></>} />
         <Route path='/saved-movies' element={<><Header /><SavedMovies /><Footer /></>} />
         <Route path='/profile' element={<><Header/><Profile/></>}/>
         <Route path='/login' element={<Login/>}/>
         <Route path='/register' element={<Register/>}/>
       </Routes>
+      <PopupWithNav
+      onClose={handleClosePopup}
+      isOpen={isPopupWithNavOpen}
+      />
     </div>
   );
 }

@@ -2,6 +2,7 @@
   display: flex;
   flex-direction: column;
   max-width: 1140px;
+  margin-top: 10px;
   padding-bottom: 55px;
   padding: 0 70px;
 }
@@ -27,13 +28,14 @@
 }
 
 .student-card__text-subtitle {
-  margin-top: 15px;
+  margin-top: 16px;
   color: #000;
   font-family: Inter;
   font-size: 18px;
   font-style: normal;
-  font-weight: 500;
+  font-weight: 600;
   line-height: 20px;
+  
 }
 
 .student-card__text-paragraph {
@@ -47,5 +49,56 @@
 }
 
 .student-card__link {
- 
+  color: #000;
+  font-family: Inter;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+}
+
+.student-card__image {
+border-radius: 10px;
+}
+
+@media screen and (max-width: 900px) {
+  .about-me {
+    padding: 0 50px;
+  }
+
+  .student-card__text-title {
+    font-size: 40px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 40px;
+    letter-spacing: -1.6px;
+  }
+
+  .student-card__text-subtitle {
+    font-size: 12px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 18px;
+  }
+
+  .student-card {
+    margin-top: -5px;
+  }
+
+  .student-card__text-paragraph {
+    color: #000;
+  font-family: Inter;
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 18px;
+  max-width: 364px;
+  padding-right: 5px;
+  margin-bottom: 90px;
+  }
+
+  .student-card__image {
+    width: 255px;
+    height: 307px;
+  }
 }

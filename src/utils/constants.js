@@ -213,6 +213,7 @@ export const moviesData = [
   nameEN: "movie"
 },
 
+
 ]
 
 //breakpoints

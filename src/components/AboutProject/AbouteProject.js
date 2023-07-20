@@ -14,8 +14,8 @@ function AbouteProject() {
     <div className="about-project__schedule">
       <h3 className="about-project__schedule-title">1 неделя</h3>
       <h3 className="about-project__schedule-title">4 недели</h3>
-      <p className="about-project__schedule-item">Backend</p>
-      <p className="about-project__schedule-item">Frontend</p>
+      <p className="about-project__schedule-item">Back-end</p>
+      <p className="about-project__schedule-item">Front-end</p>
     </div>
   </section>   
 </>

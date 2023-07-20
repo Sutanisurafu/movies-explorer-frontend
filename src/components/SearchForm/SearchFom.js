@@ -9,8 +9,7 @@ function SearchForm() {
   <img className="search__image" src={searchIcon} alt="лупа"></img>
   <button type="submit" className="search__sbmt-btn"></button>
   <hr className="search__line"></hr>
-  {/* <button type="submit" class="search__filter-btn">Короткометражки</button> */}
-  <label class="switch">
+  <label className="switch">
     <input type="checkbox" className="switch__checkbox"></input>
     <span className="switch__slider round"></span>
     <span className="switch__span">Короткометражки</span>
