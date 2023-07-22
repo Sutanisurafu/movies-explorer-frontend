@@ -35,6 +35,30 @@
   color: #000;
 }
 
-@media screen and (max-width: 900px) {
-  
+@media screen and (max-width: 520px) {
+
+  .promo__nav-container {
+    padding-bottom: 20px;
+  }
+
+  .promo__nav-btn {
+    margin-right: 6px;
+  }
+
+  .promo__nav-btn:last-of-type  {
+    margin-right: 0;
+  }
+
+  .promo__nav-btn {
+    width: 82px;
+    height: 26px;
+  }
+
+  .promo_nav-link {
+    font-size: 10px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: 16px;
+  }
 }
+

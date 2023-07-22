@@ -72,3 +72,41 @@
     margin: 0 30px;
   }
 }
+
+@media screen and (max-width: 500px) {
+  .footer {
+
+  }
+  
+  .footer__title {
+    margin: 0 10px;
+    font-size: 12px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+  }
+
+  .footer__container {
+    align-items: center;
+    justify-content: center;
+    flex-direction: column-reverse;
+  }
+  .footer__links {
+    flex-direction: column;
+    align-items: center;
+    padding-left: 0;
+  }
+
+  .footer__links-item {
+    margin: 10px 0;
+    font-size: 12px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: normal;
+  }
+
+  .footer__links-item:last-of-type {
+    margin-top: 4px;
+    margin-bottom: 0px;
+  }
+}

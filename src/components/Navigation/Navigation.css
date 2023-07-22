@@ -88,3 +88,29 @@
     padding-right: 30px;
   }
 }
+
+
+
+@media screen and (max-width: 500px) {
+  .navigation__container {
+    padding-right: 14px;
+  }
+
+  .header__register-btn {
+    text-align: right;
+    font-family: Inter;
+    font-size: 10px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 16px;
+    margin-right: 14px;
+  }
+
+  .header__login-btn {
+    padding: 5px 12px;
+    font-size: 10px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 16px;
+  }
+}

@@ -84,6 +84,11 @@
   .techs__item {
     width: 84px;
     height: 57px;
+    font-size: 12px;
+font-style: normal;
+font-weight: 400;
+line-height: normal;
+letter-spacing: -0.48px;
   }
 
   .techs__title {
@@ -108,4 +113,44 @@
     line-height: 18px; /* 150% */
     letter-spacing: -0.48px;
   }
+}
+
+@media screen and (max-width: 750px) {
+  .techs {
+    padding: 0 18px;
+    margin-top: 82px;
+    margin-bottom: 58px;
+    background-color: transparent;
+  }
+  
+  .techs__title {
+    margin-top: 0px;
+  font-size: 30px;
+  line-height: normal;
+  letter-spacing: -1.2px;
+  }
+
+  .techs__text {
+    font-size: 11px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 16px;
+    letter-spacing: -0.44px;
+  }
+
+  .techs__container {
+    flex-wrap: wrap;
+    row-gap: 10px;
+    max-width: 190px;
+    max-height: 300px;
+    margin-top: 48px;
+    padding-left: 8px;
+  }
+
+  .techs__item {
+  line-height: 16px;
+  letter-spacing: -0.44px;
+}
+
+
 }

@@ -17,3 +17,12 @@
     margin-top: 80px;
   }
 }
+
+@media screen and (max-width: 500px) {
+  .section-title {
+    margin: 60px 0;
+    font-size: 18px;
+    letter-spacing: -0.72px;
+    padding-bottom: 26px;
+  }
+}

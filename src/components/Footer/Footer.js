@@ -11,7 +11,7 @@ function Footer({ onExit, profileEmail }) {
       <div className="footer__container">
         <p className="footer__caption">©2020</p>
         <ul className="footer__links">
-            <li className="footer__links-item">Яндекс.практикум</li>
+            <li className="footer__links-item">Яндекс.Практикум</li>
             <li className="footer__links-item">Github</li>
         </ul>
       </div>
