@@ -1,7 +1,6 @@
 .cardlist-section {
   border-top: 1px solid #E8E8E8;
   padding-top: 80px;
-  margin: auto;
   margin-top: 70px;
   max-width: 1140px;
   display: grid;
@@ -26,9 +25,28 @@
   }
 }
 
+@media screen and (max-width: 800px) {
+  .cardlist-section {
+    column-gap: 30px;
+    row-gap: 36px;
+    margin-top: 110px;
+  }
+
+}
+
 @media screen and (max-width: 764px) {
   .cardlist-section {
     grid-template-columns: repeat(1, 1fr);
     margin: auto;
   }
 }
+
+@media screen and (max-width: 400px) {
+  .cardlist-section {
+    margin: auto;
+    padding-top: 50px;
+    row-gap: 16px;
+  }
+
+}
+

@@ -10,7 +10,7 @@ function Movies() {
             <MoviesCardList
             isSaved={false}
             moviesData={moviesData}/>
-            <button className="section-movies__more-btn">Еще</button>
+            <button className="section-movies__more-btn">Ещё</button>
           </div>
   )
 }

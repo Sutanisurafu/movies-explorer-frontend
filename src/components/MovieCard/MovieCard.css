@@ -50,8 +50,27 @@ line-height: normal;
   cursor: pointer;
 }
 
-@media screen and (max-width: 500px) {
+@media screen and (max-width: 800px) {
+  .movie-card__image {
+    max-width: 339px;
+    max-height: 190px;
+  }
+  
   .movie-card {
+    max-width: 339px;
+    max-height: 258px;
+  }
+}
 
+
+@media screen and (max-width: 400px) {
+  .movie-card {
+    max-width: 300px;
+    max-height: 236px;
+  }
+
+  .movie-card__image {
+    max-width: 300px;
+    max-height: 168px;
   }
 }

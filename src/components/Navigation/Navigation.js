@@ -6,7 +6,7 @@ import { useResize } from '../../hooks/use-resize';
 function Navigation({ onNav }) {
   const [navigationContainer, setNavigationContainer] = React.useState(<></>);
   const location = useLocation();
-  const { width, isScreenSm, isScreenMd, isScreenLg, isScreenXl } = useResize();
+  const { width } = useResize();
 
   
   function handleNavigationChange() {
@@ -39,7 +39,7 @@ function Navigation({ onNav }) {
       default:
         setNavigationContainer(
           <nav className="navigation__container">
-            <NavLink to="/Register" className="header__register-btn">
+            <NavLink to="/Register" className="header__register-btn">МЕП/р
               Регистрация
             </NavLink>
             <NavLink to="/Login" className="header__login-btn">

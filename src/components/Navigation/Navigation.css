@@ -113,4 +113,13 @@
     font-weight: 500;
     line-height: 16px;
   }
+
+  .hidden-navigation__btn {
+    margin-right: 20px;
+    width: 24px;
+    height: 42px;
+    background-image: url(../../images/hiden\ menu\ 320.svg);
+    background-position: center;
+  }
 }
+

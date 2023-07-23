@@ -12,7 +12,7 @@ function MovieCard({ card, isSaved }) {
         </div>
         <button className={!isSaved ? favoriteBtn : deleteBtn}/>
       </div>
-      <img src={card.image} alt="Постер фильма"></img>
+      <img className='movie-card__image' src={card.image} alt="Постер фильма"></img>
     </article>
   );
 }

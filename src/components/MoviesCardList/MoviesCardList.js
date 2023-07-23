@@ -1,10 +1,8 @@
-import React from "react";
-import MovieCard from "../MovieCard/MovieCard";
+import React from 'react';
+import MovieCard from '../MovieCard/MovieCard';
 
 
-
-function MoviesCardList({moviesData, isSaved}) {
-
+function MoviesCardList({ moviesData, isSaved }) {
   return (
     <div className="cardlist-section">
       {moviesData.map((movieCard) => {
@@ -12,10 +10,11 @@ function MoviesCardList({moviesData, isSaved}) {
           <MovieCard
             isSaved={isSaved}
             key={movieCard.movieId}
-            card={movieCard}/>
-        )
+            card={movieCard}
+          />
+        );
       })}
     </div>
-  )
+  );
 }
 export default MoviesCardList;
