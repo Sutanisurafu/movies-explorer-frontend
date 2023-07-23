@@ -3,6 +3,22 @@
   flex-direction: column;
   margin: auto;
   padding-top: 50px;
+  padding-bottom: 126px;
   max-width: 1140px;
   box-sizing: border-box;
+}
+
+@media screen and (max-width: 800px) {
+  .section-favorite {
+    padding-top: 64px;
+    padding-bottom: 136px;
+  }
+}
+
+@media screen and (max-width: 400px) {
+  .section-favorite {
+    background-color:#FDFDFD;
+    margin: 0 10px;
+  }
+
 }

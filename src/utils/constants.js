@@ -39,19 +39,19 @@ export const savedMoviesData = [
     nameRU: "33 слова о дизайне",
     nameEN: "movie"
   },
-  {
-    country: "ekb",
-    director: "ya",
-    duration: "1ч 47м",
-    year: "2014",
-    description: "testMovie",
-    image: movieImage6,
-    trailerLink: "https://www.youtube.com/watch?v=QBp4-yXFNNc",
-    thumbnail: "https://www.youtube.com/watch?v=QBp4-yXFNNc",
-    movieId: "123472145",
-    nameRU: "33 слова о дизайне",
-    nameEN: "movie"
-  },
+  // {
+  //   country: "ekb",
+  //   director: "ya",
+  //   duration: "1ч 47м",
+  //   year: "2014",
+  //   description: "testMovie",
+  //   image: movieImage6,
+  //   trailerLink: "https://www.youtube.com/watch?v=QBp4-yXFNNc",
+  //   thumbnail: "https://www.youtube.com/watch?v=QBp4-yXFNNc",
+  //   movieId: "123472145",
+  //   nameRU: "33 слова о дизайне",
+  //   nameEN: "movie"
+  // },
 ]
 
 export const moviesData = [
@@ -66,7 +66,7 @@ export const moviesData = [
     trailerLink: "https://www.youtube.com/watch?v=QBp4-yXFNNc",
     thumbnail: "https://www.youtube.com/watch?v=QBp4-yXFNNc",
     movieId: "12322145",
-    nameRU: "333 слова о дизайне",
+    nameRU: "33 слова о дизайне",
     nameEN: "movie"
  },
  {
