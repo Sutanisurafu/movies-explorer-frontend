@@ -11,7 +11,7 @@ function PopupWithNav({ isOpen, onClose }) {
           <NavLink className="popup__nav-link" to="/movies">Фильмы</NavLink>
           <NavLink className="popup__nav-link" to="/saved-movies">Сохранённые фильмы</NavLink>
         </nav>
-        <NavLink className="popup_nav__profile-link" to="/profile">Аккаунт</NavLink>
+        <NavLink className="popup__nav-profile" to="/profile">Аккаунт</NavLink>
       </div>
     </div>
   );

@@ -86,6 +86,11 @@
   border: none;
 }
 
+.profile__edit-btn:hover {
+  cursor: pointer;
+  opacity: 0.6;
+}
+
 .profile__logout-btn {
   background-color: transparent;
   color: #EE3465;
@@ -96,5 +101,39 @@
   font-weight: 500;
   line-height: normal;
   border: none;
+}
 
+.profile__logout-btn:hover {
+  cursor: pointer;
+  opacity: 0.6;
+}
+
+@media screen and (max-width: 800px) {
+  .profile__title {
+    margin-top: 170px;
+  }
+
+  .profile__form {
+    margin-top: 94px;
+  }
+
+  .profile__edit-btn {
+    margin-top: 206px;
+  }
+
+}
+
+@media screen and (max-width: 500px) {
+  .profile__title {
+    margin-top: 0;
+  }
+
+  .profile__form {
+    margin-top: 80px;
+    width: 260px;
+  }
+
+  .profile__edit-btn {
+    margin-top: 380px;
+  }
 }

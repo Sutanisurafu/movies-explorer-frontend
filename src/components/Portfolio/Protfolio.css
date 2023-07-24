@@ -41,6 +41,10 @@
   letter-spacing: -1.2px;
 }
 
+.portfolio__item-link:hover {
+  opacity: 0.6;
+}
+
 .portfolio__item-arrow {
   align-self: center;
 }
@@ -100,6 +104,7 @@
     height: 10px;
   }
 
+
   .portfolio__item-link {
     font-size: 18px;
     font-style: normal;
@@ -107,5 +112,7 @@
     line-height: 28px; /* 155.556% */
     letter-spacing: -0.72px;
   }
+
+
 
 }

@@ -10,6 +10,7 @@ import Profile from '../Profile/Profile';
 import Login from '../Login/Login';
 import Register from '../Register/Register';
 import PopupWithNav from '../PopupWithNav/PopupWithNav';
+import NotFound from '../NotFound/NotFound';
 
 function App() {
   const [isPopupWithNavOpen, setIsPopupWithNavOpen] = React.useState(false);
@@ -26,6 +27,7 @@ function App() {
   return (
     <div className="page">
       <Routes>
+        <Route path='*' element={(<NotFound/>)} />
         <Route path='/' element={<><Header/><Main /><Footer /></>} />
         <Route path='/movies' element={<><Header onNav={handleNavClick} /><Movies /><Footer /></>} />
         <Route path='/saved-movies' element={<><Header /><SavedMovies /><Footer /></>} />

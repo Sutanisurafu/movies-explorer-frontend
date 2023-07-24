@@ -42,8 +42,8 @@
   list-style-type: none;
 }
 
-.footer__links-item {
-  margin-right: 20px;
+.footer__link {
+  text-decoration: none;
   color: #000;
   text-align: right;
   font-family: Inter;
@@ -53,8 +53,12 @@
   line-height: normal;
 }
 
-.footer__links-item:last-of-type {
-  margin-right: 0px;
+.footer__link:hover {
+  opacity: 0.6;
+}
+
+.footer__link:last-of-type {
+  margin-left: 20px;
 }
 
 @media screen and (max-width: 900px) {

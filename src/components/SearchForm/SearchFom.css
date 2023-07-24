@@ -49,6 +49,10 @@
   border: none;
 }
 
+.search__sbmt-btn:hover {
+  opacity: 0.6;
+}
+
 .search__line {
   height: 40px;
   margin: 0 30px;

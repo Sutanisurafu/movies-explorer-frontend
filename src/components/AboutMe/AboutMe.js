@@ -21,7 +21,7 @@ function AboutMe() {
               транспорт, пробовать новое и еще много чего. После учебы в
               основном работал в такси и в сфере строительства.
             </p>
-            <a className="student-card__link">Github</a>
+            <a href='http://github.com/sutanisurafu' className="student-card__link" target='blank'>Github</a>
           </div>
           <img
             className="student-card__image"

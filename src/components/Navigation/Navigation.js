@@ -18,14 +18,14 @@ function Navigation({ onNav }) {
           setNavigationContainer(
             <div className="navigation">
               <nav className="navigation__container navigation__container_type_logged">
-                <NavLink to="/movies" className="header__nav-item">
+                <NavLink to="/movies" className="navigation__item">
                   Фильмы
                 </NavLink>
-                <NavLink to="/savedmovies" className="header__nav-item">
+                <NavLink to="/saved-movies" className="navigation__item">
                   Сохранённые фильмы
                 </NavLink>
               </nav>
-              <NavLink to="/user" className="header__user-btn">
+              <NavLink to="/profile" className="navigation__user-btn">
                 Аккаунт
               </NavLink>
             </div>
@@ -39,10 +39,10 @@ function Navigation({ onNav }) {
       default:
         setNavigationContainer(
           <nav className="navigation__container">
-            <NavLink to="/Register" className="header__register-btn">МЕП/р
+            <NavLink to="/Register" className="navigation__register-btn">
               Регистрация
             </NavLink>
-            <NavLink to="/Login" className="header__login-btn">
+            <NavLink to="/Login" className="navigation__login-btn">
               Войти
             </NavLink>
           </nav>

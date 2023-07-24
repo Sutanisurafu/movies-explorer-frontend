@@ -9,6 +9,7 @@ function Portfolio() {
           <a
             className="portfolio__item-link"
             href="https://github.com/Sutanisurafu/mesto"
+            target='blank'
           >
             Статичный сайт
             <img className='portfolio__item-arrow' src={arrow} alt='стрелка'/>
@@ -18,6 +19,7 @@ function Portfolio() {
           <a
             className="portfolio__item-link"
             href="https://github.com/Sutanisurafu/mesto"
+            target='blank'
           >
             Адаптивный сайт
             <img className='portfolio__item-arrow' src={arrow} alt='стрелка'/>
@@ -27,6 +29,7 @@ function Portfolio() {
           <a
             className="portfolio__item-link"
             href="https://github.com/Sutanisurafu/mesto"
+            target='blank'
           >
             Одностраничное приложение
             <img className='portfolio__item-arrow' src={arrow} alt='стрелка'/>

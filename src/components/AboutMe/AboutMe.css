@@ -55,6 +55,11 @@
   font-style: normal;
   font-weight: 500;
   line-height: normal;
+  text-decoration: none;
+}
+
+.student-card__link:hover {
+  opacity: 0.6;
 }
 
 .student-card__image {

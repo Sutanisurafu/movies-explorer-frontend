@@ -20,6 +20,11 @@
   font-style: normal;
   font-weight: 600;
   line-height: normal;
+  cursor: pointer;
+}
+
+.section-movies__more-btn:hover {
+  opacity: 0.6;
 }
 
 

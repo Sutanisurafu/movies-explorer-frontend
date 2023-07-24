@@ -18,6 +18,15 @@
   padding: 0;
 }
 
+.login__logo-link:hover {
+  opacity: 0.6;
+}
+
+.login__form {
+  display: flex;
+  flex-direction: column;
+}
+
 .login__title {
   padding: 0;
   margin: 38px 0;
@@ -75,6 +84,12 @@
   font-style: normal;
   font-weight: 500;
   line-height: normal;
+  border-radius: 4px;
+}
+
+.login__submitBtn:hover {
+  cursor: pointer;
+  opacity: 0.6;
 }
 
 .login_register-span {
@@ -98,4 +113,71 @@
   font-weight: 400;
   line-height: normal;
   text-decoration: none;
+}
+
+.login__register-link:hover {
+  opacity: 0.6;
+}
+
+@media screen and (max-width: 800px) {
+  .login {
+    margin-top: 160px;
+  }
+
+  .login__form {
+    margin-bottom: 230px;
+  }
+
+  .login__submitBtn {
+    margin-top: 210px;
+  }
+}
+
+@media screen and (max-width: 500px) {
+  .login {
+    align-items: center;
+    margin-top: 56px;
+  }
+
+  .login__form {
+    margin-bottom: 30px;
+  }
+
+  .login__title {
+    align-self: center;
+    margin-top: 48px;
+    margin-bottom: 80px;
+  }
+
+  .login__logo {
+    margin: 0;
+  }
+
+  .login__label {
+  }
+
+  .login__input {
+    width: 396px;
+    width: 260px;
+  }
+
+  .login_register-span {
+    font-size: 12px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+  }
+
+  .login__submitBtn {
+    margin-top: 290px;
+    width: 260px;
+    height: 45px;
+  }
+
+  .login__register-link {
+    font-size: 12px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+  }
 }

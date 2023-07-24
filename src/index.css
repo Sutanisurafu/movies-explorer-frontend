@@ -20,6 +20,7 @@
 @import url(../src/components/Register/Register.css);
 @import url(../src/components/Navigation/Navigation.css);
 @import url(../src//components/PopupWithNav/PopupWithNav.css);
+@import url(../src/components/NotFound/NotFound.css);
 
 body {
     margin: auto;

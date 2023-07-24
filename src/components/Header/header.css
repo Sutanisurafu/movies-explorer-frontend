@@ -12,6 +12,10 @@
   height: 38px;
 }
 
+.header__logo:hover {
+  opacity: 0.6;
+}
+
 .header__logo-link{ 
   padding-left: 70px;
 }
