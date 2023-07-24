@@ -5,8 +5,8 @@ import searchLine from "../../images/search-form__line.svg"
 
 function SearchForm() {
   return (
-<div className="search__container">
-  <input className="search__input" type="text" placeholder="Фильм" name="search"></input>
+<form className="search__container">
+  <input className="search__input" type="text" placeholder="Фильм" name="search" required="true"></input>
   <img className="search__image" src={searchIcon} alt="лупа"></img>
   <button type="submit" className="search__sbmt-btn"></button>
   <img src={searchLine} className="search__line" alt="линия"></img>
@@ -15,7 +15,7 @@ function SearchForm() {
     <span className="switch__slider round"></span>
     <span className="switch__span">Короткометражки</span>
 </label>
-</div>
+</form>
   )
 }
 export default SearchForm;

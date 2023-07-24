@@ -5,12 +5,12 @@ import {savedMoviesData} from "../../utils/constants"
 
 function SavedMovies() {
   return (
-          <div className="section-favorite">
+          <main className="section-favorite">
             <SearchForm/>
             <MoviesCardList
             isSaved={true}
             moviesData={savedMoviesData}/>
-          </div>
+          </main>
   )
 }
 export default SavedMovies;

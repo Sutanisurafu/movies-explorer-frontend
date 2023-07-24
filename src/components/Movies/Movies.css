@@ -1,9 +1,8 @@
 .section-movies {
   display: flex;
   flex-direction: column;
-  margin: auto;
   padding-top: 50px;
-  max-width: 1140px;
+  max-width: 100vw;
 }
 
 .section-movies__more-btn {
@@ -15,7 +14,7 @@
   border-radius: 5px;
   color: #000;
   text-align: center;
-  font-family: Inter;
+  font-family: 'inter', Arial, Helvetica, sans-serif;
   font-size: 12px;
   font-style: normal;
   font-weight: 600;
@@ -30,7 +29,7 @@
 
 @media screen and (max-width: 800px) {
   .section-movies {
-    margin: 0 30px;
+    /* margin: 0 30px; */
     padding-top: 66px;
   }
 
@@ -42,7 +41,7 @@
 @media screen and (max-width: 400px) {
 
   .section-movies {
-    margin: 0 10px;
+    margin: 0;
   }
 
   .section-movies__more-btn {

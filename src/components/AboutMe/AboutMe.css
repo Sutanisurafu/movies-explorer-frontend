@@ -19,7 +19,7 @@
 .student-card__text-title {
   margin: 0;
   color: #000;
-  font-family: Inter;
+  font-family: 'inter', Arial, Helvetica, sans-serif;
   font-size: 50px;
   font-style: normal;
   font-weight: 400;
@@ -30,7 +30,7 @@
 .student-card__text-subtitle {
   margin-top: 16px;
   color: #000;
-  font-family: Inter;
+  font-family: 'inter', Arial, Helvetica, sans-serif;
   font-size: 18px;
   font-style: normal;
   font-weight: 600;
@@ -40,7 +40,7 @@
 
 .student-card__text-paragraph {
   color: #000;
-  font-family: Inter;
+  font-family: 'inter', Arial, Helvetica, sans-serif;
   font-size: 14px;
   font-style: normal;
   font-weight: 400;
@@ -50,7 +50,7 @@
 
 .student-card__link {
   color: #000;
-  font-family: Inter;
+  font-family: 'inter', Arial, Helvetica, sans-serif;
   font-size: 14px;
   font-style: normal;
   font-weight: 500;
@@ -92,7 +92,7 @@ border-radius: 10px;
 
   .student-card__text-paragraph {
     color: #000;
-  font-family: Inter;
+  font-family: 'inter', Arial, Helvetica, sans-serif;
   font-size: 12px;
   font-style: normal;
   font-weight: 400;

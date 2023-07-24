@@ -21,7 +21,7 @@
 .register__title {
   margin: 40px 0;
   color: #000;
-  font-family: Inter;
+  font-family: 'inter', Arial, Helvetica, sans-serif;
   font-size: 24px;
   font-style: normal;
   font-weight: 500;
@@ -44,11 +44,15 @@
   padding-bottom: 9px;
   margin-bottom: 24px;
   color: #000;
-  font-family: Inter;
+  font-family: 'inter', Arial, Helvetica, sans-serif;
   font-size: 14px;
   font-style: normal;
   font-weight: 400;
   line-height: normal;
+}
+
+.register__input:focus {
+  border-bottom: 1px solid #FF6838;
 }
 
 .register__label {
@@ -56,7 +60,7 @@
   margin: 0;
   padding-bottom: 5px;
   color: #A0A0A0;
-  font-family: Inter;
+  font-family: 'inter', Arial, Helvetica, sans-serif;
   font-size: 10px;
   font-style: normal;
   font-weight: 400;
@@ -75,7 +79,7 @@
   border: none;
   color: #FFF;
   text-align: center;
-  font-family: Inter;
+  font-family: 'inter', Arial, Helvetica, sans-serif;
   font-size: 14px;
   font-style: normal;
   font-weight: 500;
@@ -92,7 +96,7 @@
   display: flex;
   color: #A0A0A0;
   text-align: center;
-  font-family: Inter;
+  font-family: 'inter', Arial, Helvetica, sans-serif;
   font-size: 14px;
   font-style: normal;
   font-weight: 400;
@@ -106,7 +110,7 @@
 .register__register-link {
   color: #FF6838;
   text-align: center;
-  font-family: Inter;
+  font-family: 'inter', Arial, Helvetica, sans-serif;
   font-size: 14px;
   font-style: normal;
   font-weight: 400;

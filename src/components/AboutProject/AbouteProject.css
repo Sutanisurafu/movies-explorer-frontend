@@ -19,7 +19,7 @@
   margin: 0;
   max-width: 550px;
   color: #000;
-  font-family: Inter;
+  font-family: 'inter', Arial, Helvetica, sans-serif;
   font-size: 20px;
   font-style: normal;
   font-weight: 400;
@@ -31,7 +31,7 @@
   margin: 0;
   max-width: 550px;
   color: #000;
-  font-family: Inter;
+  font-family: 'inter', Arial, Helvetica, sans-serif;
   font-size: 14px;
   font-style: normal;
   font-weight: 400;
@@ -49,7 +49,7 @@
   background-color: #F2F2F2;
   text-align: center;
   color: #000;
-  font-family: Inter;
+  font-family: 'inter', Arial, Helvetica, sans-serif;
   font-size: 14px;
   font-style: normal;
   font-weight: 400;
@@ -65,7 +65,7 @@
   margin: 0;
   color: #A0A0A0;
   text-align: center;
-  font-family: Inter;
+  font-family: 'inter', Arial, Helvetica, sans-serif;
   font-size: 14px;
   font-style: normal;
   font-weight: 500;
@@ -90,8 +90,6 @@
   }  
   
   .about-project__facts-item {
-    color: #000;
-    font-family: Inter;
     font-size: 12px;
     font-style: normal;
     font-weight: 400;
