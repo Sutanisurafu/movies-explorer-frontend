@@ -1,6 +1,7 @@
 import React from "react";
 import searchIcon from "../../images/search-icon.png"
 import searchBtn from "../../images/find.svg"
+import searchLine from "../../images/search-form__line.svg"
 
 function SearchForm() {
   return (
@@ -8,7 +9,7 @@ function SearchForm() {
   <input className="search__input" type="text" placeholder="Фильм" name="search"></input>
   <img className="search__image" src={searchIcon} alt="лупа"></img>
   <button type="submit" className="search__sbmt-btn"></button>
-  <hr className="search__line"></hr>
+  <img src={searchLine} className="search__line" alt="линия"></img>
   <label className="switch">
     <input type="checkbox" className="switch__checkbox"></input>
     <span className="switch__slider round"></span>

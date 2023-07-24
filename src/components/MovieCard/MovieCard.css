@@ -1,6 +1,7 @@
 .movie-card {
   max-width: 364px;
   max-height: 270px;
+  box-shadow: 0px 4px 30px 0px rgba(0, 0, 0, 0.08);
 }
 
 .movie-card__header-container {

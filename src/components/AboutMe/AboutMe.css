@@ -108,7 +108,7 @@ border-radius: 10px;
   }
 }
 
-@media screen and (max-width: 500px) {
+@media screen and (max-width: 520px) {
 
   .about-me {
     padding: 0 14px;
@@ -117,6 +117,8 @@ border-radius: 10px;
   .student-card {
     flex-wrap: nowrap;
     flex-direction: column-reverse;
+    justify-content: center;
+    align-items: center;
   }
 
   .student-card__image {
