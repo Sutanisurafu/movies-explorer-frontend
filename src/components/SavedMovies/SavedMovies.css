@@ -1,0 +1,23 @@
+.section-favorite {
+  display: flex;
+  flex-direction: column;
+  padding-top: 50px;
+  padding-bottom: 126px;
+  max-width: 100vw;
+  box-sizing: border-box;
+}
+
+@media screen and (max-width: 800px) {
+  .section-favorite {
+    padding-top: 64px;
+    padding-bottom: 136px;
+  }
+}
+
+@media screen and (max-width: 400px) {
+  .section-favorite {
+
+    margin: 0;
+  }
+
+}

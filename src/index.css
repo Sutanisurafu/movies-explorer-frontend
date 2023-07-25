@@ -1,0 +1,38 @@
+@import url(../src/vendor/normalize.css);
+@import url(../src/vendor/fonts/fonts.css);
+@import url(../src/components/App/App.css);
+@import url(../src//components/SectionTitle/SectionTitle.css);
+@import url(../src/components/Header/header.css);
+@import url(../src/components/Promo/Promo.css);
+@import url(../src/components/NavTab/NavTab.css);
+@import url(../src/components/AboutProject/AbouteProject.css);
+@import url(../src/components/Techs/Techs.css);
+@import url(../src/components/AboutMe/AboutMe.css);
+@import url(../src/components/Portfolio/Protfolio.css);
+@import url(../src/components/Footer/Footer.css);
+@import url(../src/components/Movies/Movies.css);
+@import url(../src/components/SearchForm/SearchFom.css);
+@import url(../src/components/MoviesCardList/MoviesCardList.css);
+@import url(../src/components/MovieCard/MovieCard.css);
+@import url(../src/components/SavedMovies/SavedMovies.css);
+@import url(../src/components/Profile/Profile.css);
+@import url(../src/components/Login/Login.css);
+@import url(../src/components/Register/Register.css);
+@import url(../src/components/Navigation/Navigation.css);
+@import url(../src//components/PopupWithNav/PopupWithNav.css);
+@import url(../src/components/NotFound/NotFound.css);
+
+body {
+    margin: auto;
+    max-width: 1280px;
+    min-width: 320px;
+    min-height: 100vh;
+    padding: 0;
+    font-family: "Inter", "Arial", "sans-serif";
+    text-rendering: optimizeLegibility;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
+}

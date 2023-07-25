@@ -1,0 +1,149 @@
+.navigation {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.navigation__container {
+  display: flex;
+  align-items: center;
+  justify-content: end;
+  margin-right: 70px;
+  width: 100%;
+}
+
+
+.navigation__user-btn {
+  text-decoration: none;
+  color: #000;
+  text-align: center;
+  font-family: 'inter', Arial, Helvetica, sans-serif;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 16px;
+  background-color: #F9F9F9;
+  padding: 8px 20px;
+  border-radius: 20px;
+  margin-right: 70px;
+}
+
+.navigation__user-btn:hover {
+  opacity: 0.6;
+}
+
+.navigation__item:first-of-type {
+  margin: 0 16px 0 44px;
+}
+
+.navigation__item {
+  text-decoration: none;
+  margin-right: auto;
+  color: #000;
+  text-align: right;
+  font-family: 'inter', Arial, Helvetica, sans-serif;
+  font-size: 13px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 18px;
+}
+
+.navigation__item:hover {
+  opacity: 0.6;
+}
+
+.navigation__register-btn {
+  margin-right: 30px;
+  text-decoration: none;
+  color: #000;
+  text-align: right;
+  font-family: 'inter', Arial, Helvetica, sans-serif;
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 16px;
+}
+
+.navigation__register-btn:hover {
+  opacity: 0.6;
+}
+
+.navigation__login-btn {
+  color: #000;
+  text-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+  font-family: 'inter', Arial, Helvetica, sans-serif;
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 16px;
+  background-color: #2BE080;
+  padding: 8px 20px;
+  border-radius: 3px;
+  border: none;
+  text-decoration: none;
+}
+
+.navigation__login-btn:hover {
+  opacity: 0.6;
+}
+
+.hidden-navigation__btn {
+  margin: 0 30px 0 auto;
+  background-image: url(../../images/hidden__menu-btn.png);
+  background-color: transparent;
+  width: 44px;
+  height: 44px;
+  border: none;
+  cursor: pointer;
+}
+
+.hidden-navigation__btn:hover {
+  opacity: 0.6;
+}
+
+
+@media screen and (max-width: 900px) {
+  .navigation__container {
+    margin-right: 30px;
+  }
+
+  .navigation__user-btn {
+    margin-right: 30px;
+  }
+}
+
+
+
+@media screen and (max-width: 500px) {
+  .navigation__container {
+    margin-right: 14px;
+  }
+
+  .navigation__register-btn {
+    text-align: right;
+    font-family: Inter;
+    font-size: 10px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 16px;
+    margin-right: 14px;
+  }
+
+  .navigation__login-btn {
+    padding: 5px 12px;
+    font-size: 10px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 16px;
+  }
+
+  .hidden-navigation__btn {
+    margin-right: 20px;
+    width: 24px;
+    height: 42px;
+    background-image: url(../../images/hiden\ menu\ 320.svg);
+    background-position: center;
+  }
+}
+
