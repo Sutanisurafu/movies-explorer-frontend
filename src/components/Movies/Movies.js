@@ -9,34 +9,13 @@ function Movies({ isSearched, moviesList, onSearch, resultText }) {
   const [moreBtnEmergence, setMoreBtnEmergence] = React.useState(false);
   const [slicedList, setSlicedList] = React.useState(moviesList);
   const [numberOfAddedMovies, setNumberOfAddedMovies] = React.useState(0);
-  
-  const { width, isScreenMobile, isScreenX, isScreenPC } = useResize();
-  
+
+  const { width, isScreenMobile, isScreenPC } = useResize();
+
   const moreBtnClassName = `section-movies__more-btn ${
     moreBtnEmergence && 'section-movies__more-btn_visible'
   }`;
 
-  // function handleCardsShow() {
-  //   if (isScreenPC && moviesList.length > 12) {
-  //     setMoreBtnEmergence(true);
-  //     setSlicedList(sliceMoviesList(moviesList, 0, 12));
-  //   } else {
-  //     // setMoreBtnEmergence(false);
-  //     setSlicedList(moviesList)
-  //   }
-  //   if (isScreenX && moviesList.length > 8) {
-  //     setMoreBtnEmergence(true);
-  //     setSlicedList(sliceMoviesList(moviesList, 0, 8));
-  //   } else {
-  //     setSlicedList(moviesList)
-  //     // setMoreBtnEmergence(false);
-  //   }
-  //   if (isScreenMobile && moviesList.length > 5) {
-  //     setMoreBtnEmergence(true);
-  //     setSlicedList(sliceMoviesList(moviesList, 0, 5));
-  //     // console.log(isScreenMobile)
-  //   }
-  // }
 
   function handleCardsShow() {
     switch (true) {
@@ -57,14 +36,32 @@ function Movies({ isSearched, moviesList, onSearch, resultText }) {
   function handleMoreButtonVisible() {
     if (moviesList.length > slicedList.length) {
       setMoreBtnEmergence(true);
-    } else {setMoreBtnEmergence(false)}
+    } else {
+      setMoreBtnEmergence(false);
+    }
   }
 
+  function handleMoreButtonClick() {
+    console.log(moviesList.length, slicedList.length);
+    setSlicedList([
+      ...slicedList,
+      ...sliceMoviesList(
+        moviesList,
+        slicedList.length,
+        slicedList.length + numberOfAddedMovies
+      ),
+    ]);
+    handleMoreButtonVisible();
+  }
 
+  //убирает кнопку more когда заканчивются карточки
+  React.useEffect(() => {
+    handleMoreButtonVisible();
+  }, [slicedList]);
 
   React.useEffect(() => {
     handleCardsShow();
-    handleMoreButtonVisible()
+    handleMoreButtonVisible();
   }, [moviesList, width]);
 
   return (
@@ -73,7 +70,9 @@ function Movies({ isSearched, moviesList, onSearch, resultText }) {
       {isSearched ? (
         <>
           <MoviesCardList moviesList={slicedList} resultText={resultText} />
-          <button className={moreBtnClassName}>Ещё</button>
+          <button onClick={handleMoreButtonClick} className={moreBtnClassName}>
+            Ещё
+          </button>
         </>
       ) : (
         <Preloader />
