@@ -20,7 +20,7 @@ export const useResize = () => {
   return {
     width,
     isScreenMobile: width <= SCREEN_MOBILE,
-    isScreenX: width >= SCREEN_S,
+    isScreenX: width >= SCREEN_S & width < SCREEN_XL,
     isScreenPC: width >= SCREEN_XL,
   };
 };

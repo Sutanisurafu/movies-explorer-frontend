@@ -9,6 +9,6 @@ export const classes = {
 };
 
 //breakpoints
-export const SCREEN_MOBILE = 480;
-export const SCREEN_S = 481;
+export const SCREEN_MOBILE = 765;
+export const SCREEN_S = 766;
 export const SCREEN_XL = 1280;

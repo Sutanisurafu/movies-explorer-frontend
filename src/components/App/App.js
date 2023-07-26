@@ -20,14 +20,14 @@ function App() {
   const [isSearched, setIsSearched] = React.useState(false);
   const [moviesList, setMoviesList] = React.useState([]);
   const [searchResultText, setSearchResultText] = React.useState("Ничего не найдено")
-  
+
 
   const handleSearchSubmit = (searchValue) => { 
     moviesApi.getMovies()
     .then((movies) => {
       const searchResult = searchMovies(movies, searchValue)
       setMoviesList(searchResult);
-      console.log(moviesList)
+
       setIsSearched(true);
     })
     .catch((error) => {
