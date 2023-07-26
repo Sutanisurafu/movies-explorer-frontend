@@ -1,8 +1,9 @@
 import React from 'react';
 
+import { classes } from '../../utils/constants';
 function MovieCard({ card, isSaved }) {
-  const favoriteBtn = "movie-card__favorite-btn"
-  const deleteBtn = "movie-card__favorite-delete"
+  const cardImage = `https://api.nomoreparties.co${card.image.url}`;
+  console.log(cardImage)
   return (
     <article className="movie-card">
       <div className="movie-card__header-container">
@@ -10,9 +11,9 @@ function MovieCard({ card, isSaved }) {
           <h2 className="movie-card__title">{card.nameRU}</h2>
           <p className="movie-card__duration">{card.duration}</p>
         </div>
-        <button className={!isSaved ? favoriteBtn : deleteBtn}/>
+        <button className={!isSaved ? classes.favoriteBtn : classes.deleteBtn}/>
       </div>
-      <img className='movie-card__image' src={card.image} alt="Постер фильма"></img>
+      <img className='movie-card__image' src={cardImage} alt="Постер фильма"></img>
     </article>
   );
 }

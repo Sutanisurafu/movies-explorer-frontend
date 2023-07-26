@@ -1,18 +1,19 @@
 import React from 'react';
 import MovieCard from '../MovieCard/MovieCard';
+import Preloader from '../Preloader/Preloader';
 
+function MoviesCardList({ moviesList, isSaved }) {
 
-function MoviesCardList({ moviesData, isSaved }) {
   return (
     <div className="cardlist-section">
-      {moviesData.map((movieCard) => {
+      {moviesList.map((movieCard) => {
         return (
           <MovieCard
             isSaved={isSaved}
-            key={movieCard.movieId}
+            key={movieCard.id}
             card={movieCard}
           />
-        );
+      );
       })}
     </div>
   );

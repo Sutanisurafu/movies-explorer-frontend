@@ -1,16 +1,17 @@
 import React from "react";
 import SearchForm from "../SearchForm/SearchFom";
 import MoviesCardList from "../MoviesCardList/MoviesCardList";
-import {moviesData} from "../../utils/constants"
+import Preloader from "../Preloader/Preloader";
 
-function Movies() {
+function Movies({ isSearched,  moviesList, onSearch }) {
+
+  React.useEffect(() => {
+  }, [])
+
   return (
           <main className="section-movies">
-            <SearchForm/>
-            <MoviesCardList
-            isSaved={false}
-            moviesData={moviesData}/>
-            <button className="section-movies__more-btn">Ещё</button>
+            <SearchForm onSearch={onSearch}/>
+            {isSearched ? <MoviesCardList moviesList={moviesList}/> : <Preloader/>}
           </main>
   )
 }

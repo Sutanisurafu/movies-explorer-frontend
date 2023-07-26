@@ -7,9 +7,9 @@ function SavedMovies() {
   return (
           <main className="section-favorite">
             <SearchForm/>
-            <MoviesCardList
+            {/* <MoviesCardList
             isSaved={true}
-            moviesData={savedMoviesData}/>
+            moviesData={savedMoviesData}/> */}
           </main>
   )
 }
