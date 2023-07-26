@@ -2,10 +2,11 @@ import React from 'react';
 import MovieCard from '../MovieCard/MovieCard';
 import Preloader from '../Preloader/Preloader';
 
-function MoviesCardList({ moviesList, isSaved }) {
+function MoviesCardList({ moviesList, isSaved, resultText }) {
 
   return (
-    <div className="cardlist-section">
+    (!moviesList.length ? <h2 className='cardlist-section__title'>{resultText}
+    </h2> :  <div className="cardlist-section">
       {moviesList.map((movieCard) => {
         return (
           <MovieCard
@@ -16,6 +17,8 @@ function MoviesCardList({ moviesList, isSaved }) {
       );
       })}
     </div>
+     )
+
   );
 }
 export default MoviesCardList;

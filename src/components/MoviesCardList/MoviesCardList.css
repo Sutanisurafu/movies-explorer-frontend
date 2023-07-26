@@ -20,6 +20,14 @@
   border-radius: 10px;
 }
 
+.cardlist-section__title {
+  text-align: center;
+  align-self: center;
+  margin: auto;
+}
+
+
+
 @media screen and (max-width: 1279px) {
   .cardlist-section {
     grid-template-columns: repeat(2, 1fr);

@@ -1,7 +1,7 @@
 // use-resize.js
 import { useState, useEffect } from 'react';
 import {
-  SCREEN_MOBILE, SCREEN_S, SCREEN_M, SCREEN_L, SCREEN_XL,
+  SCREEN_MOBILE, SCREEN_S, SCREEN_XL,
 } from '../utils/constants';
 
 export const useResize = () => {
@@ -20,9 +20,7 @@ export const useResize = () => {
   return {
     width,
     isScreenMobile: width <= SCREEN_MOBILE,
-    isScreenSm: width >= SCREEN_S,
-    isScreenMd: width >= SCREEN_M,
-    isScreenLg: width >= SCREEN_L,
-    isScreenXl: width >= SCREEN_XL,
+    isScreenX: width >= SCREEN_S,
+    isScreenPC: width >= SCREEN_XL,
   };
 };

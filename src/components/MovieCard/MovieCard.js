@@ -3,7 +3,6 @@ import React from 'react';
 import { classes } from '../../utils/constants';
 function MovieCard({ card, isSaved }) {
   const cardImage = `https://api.nomoreparties.co${card.image.url}`;
-  console.log(cardImage)
   return (
     <article className="movie-card">
       <div className="movie-card__header-container">

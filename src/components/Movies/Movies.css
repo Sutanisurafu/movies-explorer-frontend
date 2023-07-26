@@ -20,6 +20,11 @@
   font-weight: 600;
   line-height: normal;
   cursor: pointer;
+  visibility: hidden;
+}
+
+.section-movies__more-btn_visible {
+  visibility: visible;
 }
 
 .section-movies__more-btn:hover {
@@ -29,7 +34,6 @@
 
 @media screen and (max-width: 800px) {
   .section-movies {
-    /* margin: 0 30px; */
     padding-top: 66px;
   }
 

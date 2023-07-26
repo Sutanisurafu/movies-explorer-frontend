@@ -13,20 +13,25 @@ import PopupWithNav from '../PopupWithNav/PopupWithNav';
 import NotFound from '../NotFound/NotFound';
 import moviesApi from '../../utils/MoviesApi';
 import { searchMovies } from '../../utils/utils';
+import { errorsMessages } from '../../utils/constants';
 
 function App() {
   const [isPopupWithNavOpen, setIsPopupWithNavOpen] = React.useState(false);
   const [isSearched, setIsSearched] = React.useState(false);
   const [moviesList, setMoviesList] = React.useState([]);
+  const [searchResultText, setSearchResultText] = React.useState("Ничего не найдено")
+  
 
   const handleSearchSubmit = (searchValue) => { 
-    console.log("Ищу фильмы")
     moviesApi.getMovies()
     .then((movies) => {
       const searchResult = searchMovies(movies, searchValue)
       setMoviesList(searchResult);
       console.log(moviesList)
       setIsSearched(true);
+    })
+    .catch((error) => {
+      setSearchResultText(errorsMessages.moviesResError)
     })
   }
 
@@ -59,7 +64,8 @@ function App() {
               <Header onNav={handleNavClick} />
               <Movies isSearched={isSearched}
                       onSearch={handleSearchSubmit}
-                      moviesList={moviesList} />
+                      moviesList={moviesList}
+                      resultText={searchResultText} />
               <Footer />
             </>
           }
