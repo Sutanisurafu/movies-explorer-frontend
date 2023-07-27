@@ -3,12 +3,14 @@ import searchIcon from "../../images/search-icon.png"
 import searchLine from "../../images/search-form__line.svg"
 import useForm from "../../hooks/useForm";
 
-function SearchForm({ onSearch }) {
-  const [inputValue, setInputValue] = React.useState("")
+function SearchForm({ onSearch, clickCheckBox, isChecked }) {
+
 
   const { form, errors, handleChange } = useForm ({
     searhValue: "",
   })
+
+
 
 
   const handleSubmit = (e) => {
@@ -23,7 +25,7 @@ function SearchForm({ onSearch }) {
   <button type="submit" className="search__sbmt-btn"></button>
   <img src={searchLine} className="search__line" alt="линия"></img>
   <label className="switch">
-    <input type="checkbox" className="switch__checkbox"></input>
+    <input checked={isChecked} onChange={clickCheckBox} type="checkbox" className="switch__checkbox"></input>
     <span className="switch__slider round"></span>
     <span className="switch__span">Короткометражки</span>
 </label>

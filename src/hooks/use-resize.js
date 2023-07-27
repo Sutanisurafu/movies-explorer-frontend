@@ -9,7 +9,10 @@ export const useResize = () => {
 
   useEffect(() => {
     const handleResize = (event) => {
-      setWidth(event.target.innerWidth);
+      // Add a setTimeout with a delay of 200 milliseconds (adjust as needed)
+      setTimeout(() => {
+        setWidth(event.target.innerWidth);
+      }, 500);
     };
     window.addEventListener('resize', handleResize);
     return () => {

@@ -14,13 +14,13 @@ import NotFound from '../NotFound/NotFound';
 import moviesApi from '../../utils/MoviesApi';
 import { searchMovies } from '../../utils/utils';
 import { errorsMessages } from '../../utils/constants';
-
+import { getShortFilms } from '../../utils/utils';
 function App() {
   const [isPopupWithNavOpen, setIsPopupWithNavOpen] = React.useState(false);
   const [isSearched, setIsSearched] = React.useState(false);
   const [moviesList, setMoviesList] = React.useState([]);
   const [searchResultText, setSearchResultText] = React.useState("Ничего не найдено")
-
+  const [isChecked, setIsChecked] = React.useState(false)
 
   const handleSearchSubmit = (searchValue) => { 
     moviesApi.getMovies()
@@ -33,6 +33,12 @@ function App() {
     .catch((error) => {
       setSearchResultText(errorsMessages.moviesResError)
     })
+  }
+
+  const onCheckBoxClick = () => {
+    setIsChecked(!isChecked);
+    if (!isChecked) {setMoviesList(getShortFilms(moviesList))} else {}
+    console.log(getShortFilms(moviesList))
   }
 
   const handleNavClick = () => {
@@ -65,7 +71,9 @@ function App() {
               <Movies isSearched={isSearched}
                       onSearch={handleSearchSubmit}
                       moviesList={moviesList}
-                      resultText={searchResultText} />
+                      resultText={searchResultText}
+                      onCheckBoxClick={onCheckBoxClick}
+                      isChecked={isChecked} />
               <Footer />
             </>
           }
