@@ -3,14 +3,12 @@ import SearchForm from '../SearchForm/SearchFom';
 import MoviesCardList from '../MoviesCardList/MoviesCardList';
 import Preloader from '../Preloader/Preloader';
 import { useResize } from '../../hooks/use-resize';
-import { sliceMoviesList, getShortFilms } from '../../utils/utils';
+import { sliceMoviesList } from '../../utils/utils';
 
 function Movies({ isSearched, moviesList, onSearch, resultText, onCheckBoxClick, isChecked }) {
   const [moreBtnEmergence, setMoreBtnEmergence] = React.useState(false);
   const [slicedList, setSlicedList] = React.useState(moviesList);
   const [numberOfAddedMovies, setNumberOfAddedMovies] = React.useState(0);
-
-
   const { width, isScreenMobile, isScreenPC } = useResize();
 
   const moreBtnClassName = `section-movies__more-btn ${
@@ -43,11 +41,6 @@ function Movies({ isSearched, moviesList, onSearch, resultText, onCheckBoxClick,
     }
   }
 
-  // function handleCheckBoxClick() {
-  //   setIsChecked(!isChecked);
-  //   if (!isChecked) {setSlicedList(getShortFilms(moviesList))} else {handleCardsShow()}
-  //   // isChecked ? setSlicedList(getShortFilms(moviesList)) : setSlicedList(slicedList)
-  // }
 
   function handleMoreButtonClick() {
     setSlicedList([

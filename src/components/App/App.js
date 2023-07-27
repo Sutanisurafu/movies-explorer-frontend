@@ -19,27 +19,43 @@ function App() {
   const [isPopupWithNavOpen, setIsPopupWithNavOpen] = React.useState(false);
   const [isSearched, setIsSearched] = React.useState(false);
   const [moviesList, setMoviesList] = React.useState([]);
-  const [searchResultText, setSearchResultText] = React.useState("Ничего не найдено")
-  const [isChecked, setIsChecked] = React.useState(false)
+  const [searchResultText, setSearchResultText] =
+    React.useState('Ничего не найдено');
+  const [isChecked, setIsChecked] = React.useState(false);
+  const [test, setTest] = React.useState([]);
 
-  const handleSearchSubmit = (searchValue) => { 
-    moviesApi.getMovies()
-    .then((movies) => {
-      const searchResult = searchMovies(movies, searchValue)
-      setMoviesList(searchResult);
+  const handleSearchSubmit = (searchValue) => {
+    moviesApi
+      .getMovies()
+      .then((movies) => {
+        const searchResult = searchMovies(movies, searchValue);
+        setTest(searchMovies(movies, searchValue));
+        if (isChecked) {
+          setMoviesList(getShortFilms(searchResult));
+          setIsSearched(true);
+        } else {
+          setMoviesList(searchResult);
+          setIsSearched(true);
+        }
 
-      setIsSearched(true);
-    })
-    .catch((error) => {
-      setSearchResultText(errorsMessages.moviesResError)
-    })
-  }
+      })
+      .catch((error) => {
+        setSearchResultText(errorsMessages.moviesResError);
+      });
+  };
+
 
   const onCheckBoxClick = () => {
     setIsChecked(!isChecked);
-    if (!isChecked) {setMoviesList(getShortFilms(moviesList))} else {}
-    console.log(getShortFilms(moviesList))
-  }
+    if (!isChecked) {
+      console.log(test)
+      setMoviesList(getShortFilms(moviesList));
+    } else {
+      setMoviesList(test)
+
+    }
+
+  };
 
   const handleNavClick = () => {
     setIsPopupWithNavOpen(true);
@@ -68,12 +84,14 @@ function App() {
           element={
             <>
               <Header onNav={handleNavClick} />
-              <Movies isSearched={isSearched}
-                      onSearch={handleSearchSubmit}
-                      moviesList={moviesList}
-                      resultText={searchResultText}
-                      onCheckBoxClick={onCheckBoxClick}
-                      isChecked={isChecked} />
+              <Movies
+                isSearched={isSearched}
+                onSearch={handleSearchSubmit}
+                moviesList={moviesList}
+                resultText={searchResultText}
+                onCheckBoxClick={onCheckBoxClick}
+                isChecked={isChecked}
+              />
               <Footer />
             </>
           }

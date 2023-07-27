@@ -17,10 +17,10 @@ export const sliceMoviesList = (moviesList, start, end) => {
 
 export const getShortFilms = (moviesList) => {
   const shortMoviesList = moviesList.filter((movie) => {
-    if (movie.duration <= 52) { return movie}
+    if (movie.duration <= 40) { return movie}
   })
 
   return shortMoviesList;
 }
 
-//застрял на чек боксе, перенёс логику в апп, но наверное лучше вернуть всё в movies и работать с setSlicedMovies
+e
