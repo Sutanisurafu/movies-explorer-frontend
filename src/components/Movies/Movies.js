@@ -5,11 +5,15 @@ import Preloader from '../Preloader/Preloader';
 import { useResize } from '../../hooks/use-resize';
 import { sliceMoviesList } from '../../utils/utils';
 
-function Movies({ isSearched, moviesList, onSearch, resultText, onCheckBoxClick, isChecked }) {
+function Movies({ isSearched, foundMovies, onSearch, resultText }) {
+  const searchResult = JSON.parse(localStorage.getItem("foundMovies"));
+  const checkBoxState = localStorage.getItem("checkBoxState");
+  const searchInputValue = localStorage.getItem("searchValue");
   const [moreBtnEmergence, setMoreBtnEmergence] = React.useState(false);
-  const [slicedList, setSlicedList] = React.useState(moviesList);
+  const [slicedList, setSlicedList] = React.useState(foundMovies);
   const [numberOfAddedMovies, setNumberOfAddedMovies] = React.useState(0);
   const { width, isScreenMobile, isScreenPC } = useResize();
+  const [isChecked, setIsChecked] = React.useState(false);
 
   const moreBtnClassName = `section-movies__more-btn ${
     moreBtnEmergence && 'section-movies__more-btn_visible'
@@ -34,7 +38,7 @@ function Movies({ isSearched, moviesList, onSearch, resultText, onCheckBoxClick,
 
   //управляет отрисовкой кнопки more
   function handleMoreButtonVisible() {
-    if (moviesList.length > slicedList.length) {
+    if (foundMovies.length > slicedList.length) {
       setMoreBtnEmergence(true);
     } else {
       setMoreBtnEmergence(false);
@@ -46,7 +50,7 @@ function Movies({ isSearched, moviesList, onSearch, resultText, onCheckBoxClick,
     setSlicedList([
       ...slicedList,
       ...sliceMoviesList(
-        moviesList,
+        foundMovies,
         slicedList.length,
         slicedList.length + numberOfAddedMovies
       ),
@@ -54,20 +58,27 @@ function Movies({ isSearched, moviesList, onSearch, resultText, onCheckBoxClick,
     handleMoreButtonVisible();
   }
 
+  function handleCheckBoxClick() {
+    setIsChecked(!isChecked)
+  }
+
   //убирает кнопку more когда заканчивются карточки
   React.useEffect(() => {
     handleMoreButtonVisible();
   }, [slicedList]);
 
+  React.useEffect(() => {
+    if (!!searchResult) {handleCardsShow(searchResult)}
+  }, [])
 
   React.useEffect(() => {
-    handleCardsShow(moviesList);
     handleMoreButtonVisible();
-  }, [moviesList, width]);
+    handleCardsShow(foundMovies);
+  }, [foundMovies, width]);
 
   return (
     <main className="section-movies">
-      <SearchForm onSearch={onSearch} clickCheckBox={onCheckBoxClick} isChecked={isChecked}/>
+      <SearchForm onSearch={onSearch} clickCheckBox={handleCheckBoxClick} isChecked={isChecked}/>
       {isSearched ? (
         <>
           <MoviesCardList moviesList={slicedList} resultText={resultText} />
