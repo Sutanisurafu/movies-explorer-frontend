@@ -23,4 +23,3 @@ export const getShortFilms = (moviesList) => {
   return shortMoviesList;
 }
 
-e

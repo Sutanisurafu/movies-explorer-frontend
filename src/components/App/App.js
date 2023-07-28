@@ -19,17 +19,20 @@ function App() {
   const [isPopupWithNavOpen, setIsPopupWithNavOpen] = React.useState(false);
   const [isSearched, setIsSearched] = React.useState(false);
   const [moviesList, setMoviesList] = React.useState([]);
+  const [foundMovies, setFoundMovies] = React.useState([]);
   const [searchResultText, setSearchResultText] =
     React.useState('Ничего не найдено');
   const [isChecked, setIsChecked] = React.useState(false);
-  const [test, setTest] = React.useState([]);
 
   const handleSearchSubmit = (searchValue) => {
     moviesApi
       .getMovies()
       .then((movies) => {
         const searchResult = searchMovies(movies, searchValue);
-        setTest(searchMovies(movies, searchValue));
+        setFoundMovies(searchResult);
+        localStorage.setItem("foundMovies", foundMovies)
+        localStorage.setItem("checkBoxState", isChecked)
+        localStorage.setItem("searchValue", searchValue)
         if (isChecked) {
           setMoviesList(getShortFilms(searchResult));
           setIsSearched(true);
@@ -48,10 +51,9 @@ function App() {
   const onCheckBoxClick = () => {
     setIsChecked(!isChecked);
     if (!isChecked) {
-      console.log(test)
       setMoviesList(getShortFilms(moviesList));
     } else {
-      setMoviesList(test)
+      setMoviesList(foundMovies)
 
     }
 
