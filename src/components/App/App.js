@@ -16,6 +16,9 @@ import { searchMovies } from '../../utils/utils';
 import { errorsMessages } from '../../utils/constants';
 import { getShortFilms } from '../../utils/utils';
 function App() {
+  const searchResult = JSON.parse(localStorage.getItem("foundMovies"));
+  const checkBoxState = localStorage.getItem("checkBoxState");
+  const searchInputValue = localStorage.getItem("searchValue");
   const [isPopupWithNavOpen, setIsPopupWithNavOpen] = React.useState(false);
   const [isSearched, setIsSearched] = React.useState(false);
   const [moviesList, setMoviesList] = React.useState([]);
@@ -30,7 +33,7 @@ function App() {
       .then((movies) => {
         const searchResult = searchMovies(movies, searchValue);
         setFoundMovies(searchResult);
-        localStorage.setItem("foundMovies", foundMovies)
+        localStorage.setItem("foundMovies", JSON.stringify(foundMovies))
         localStorage.setItem("checkBoxState", isChecked)
         localStorage.setItem("searchValue", searchValue)
         if (isChecked) {
@@ -67,6 +70,10 @@ function App() {
     setIsPopupWithNavOpen(false);
   };
 
+  function test() {
+    console.log(searchInputValue)
+  }
+
   return (
     <div className="page">
       <Routes>
@@ -86,6 +93,7 @@ function App() {
           element={
             <>
               <Header onNav={handleNavClick} />
+              <button onClick={test}></button>
               <Movies
                 isSearched={isSearched}
                 onSearch={handleSearchSubmit}

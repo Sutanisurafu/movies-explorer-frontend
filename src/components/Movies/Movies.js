@@ -16,7 +16,7 @@ function Movies({ isSearched, moviesList, onSearch, resultText, onCheckBoxClick,
   }`;
 
  //управляет количеством отрисованных карточек в зависимости от ширины экрана
-  function handleCardsShow() {
+  function handleCardsShow(moviesList) {
     switch (true) {
       case isScreenPC:
         setSlicedList(sliceMoviesList(moviesList, 0, 12));
@@ -61,7 +61,7 @@ function Movies({ isSearched, moviesList, onSearch, resultText, onCheckBoxClick,
 
 
   React.useEffect(() => {
-    handleCardsShow();
+    handleCardsShow(moviesList);
     handleMoreButtonVisible();
   }, [moviesList, width]);
 
