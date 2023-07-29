@@ -8,7 +8,7 @@ import { sliceMoviesList, getShortFilms } from '../../utils/utils';
 function Movies({ isSearched, foundMovies, onSearch, resultText }) {
   const searchResult = JSON.parse(localStorage.getItem('foundMovies'));
   const checkBoxState = localStorage.getItem('checkBoxState');
-  const searchInputValue = localStorage.getItem('searchValue');
+
   const [moreBtnEmergence, setMoreBtnEmergence] = React.useState(false);
   const [slicedList, setSlicedList] = React.useState(foundMovies);
   const [shortSlicdeList, setShortSlicedList] = React.useState(
@@ -100,7 +100,7 @@ function Movies({ isSearched, foundMovies, onSearch, resultText }) {
       setIsChecked(true)
     }
   }, [])
-  
+
 
   //убирает кнопку more когда заканчивются карточки
   React.useEffect(() => {

@@ -4,7 +4,7 @@ export const searchMovies = (moviesList, searchValue) => {
   const searchedMovies = moviesList.filter((movie) => {
     const nameRu = movie.nameRU.toLowerCase();
     const nameEn = movie.nameEN.toLowerCase();
-    const result = nameRu.indexOf(searchValue) && nameEn.indexOf(searchValue);
+    const result = nameRu.indexOf(searchValue.toLowerCase()) & nameEn.indexOf(searchValue.toLowerCase());
     if (result >= 0) {return movie}
   })
 
