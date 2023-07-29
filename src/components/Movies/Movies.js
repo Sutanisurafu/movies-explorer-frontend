@@ -5,7 +5,7 @@ import Preloader from '../Preloader/Preloader';
 import { useResize } from '../../hooks/use-resize';
 import { sliceMoviesList, getShortFilms } from '../../utils/utils';
 
-function Movies({ isSearched, foundMovies, onSearch, resultText }) {
+function Movies({ isSearched, foundMovies, onSearch, resultText, onLike, isSaved }) {
   const searchResult = JSON.parse(localStorage.getItem('foundMovies'));
   const checkBoxState = localStorage.getItem('checkBoxState');
 
@@ -79,7 +79,7 @@ function Movies({ isSearched, foundMovies, onSearch, resultText }) {
         ),
       ]);
       handleMoreButtonVisible(foundMovies);
-      console.log(foundMovies.length, slicedList.length)
+      console.log(foundMovies.length, slicedList.length);
     }
   }
 
@@ -96,11 +96,10 @@ function Movies({ isSearched, foundMovies, onSearch, resultText }) {
   }
 
   React.useEffect(() => {
-    if (checkBoxState === "true") {
-      setIsChecked(true)
+    if (checkBoxState === 'true') {
+      setIsChecked(true);
     }
-  }, [])
-
+  }, []);
 
   //убирает кнопку more когда заканчивются карточки
   React.useEffect(() => {
@@ -111,7 +110,6 @@ function Movies({ isSearched, foundMovies, onSearch, resultText }) {
     }
   }, [slicedList]);
 
-
   return (
     <main className="section-movies">
       <SearchForm
@@ -121,7 +119,7 @@ function Movies({ isSearched, foundMovies, onSearch, resultText }) {
       />
       {isSearched ? (
         <>
-          <MoviesCardList moviesList={slicedList} resultText={resultText} />
+          <MoviesCardList moviesList={slicedList} resultText={resultText} onLike={onLike} isSaved={isSaved} />
           <button onClick={handleMoreButtonClick} className={moreBtnClassName}>
             Ещё
           </button>

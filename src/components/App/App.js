@@ -1,6 +1,7 @@
 import React from 'react';
 import { Route, Routes, Navigate, useNavigate } from 'react-router-dom';
 import './App.css';
+import authApi from '../../utils/MainApi';
 import Main from '../Main/Main';
 import Header from '../Header/Header';
 import Footer from '../Footer/Footer';
@@ -16,13 +17,12 @@ import { searchMovies } from '../../utils/utils';
 import { errorsMessages } from '../../utils/constants';
 import { getShortFilms } from '../../utils/utils';
 function App() {
-  const searchResult = JSON.parse(localStorage.getItem("foundMovies"));
-  const checkBoxState = localStorage.getItem("checkBoxState");
-  const searchInputValue = localStorage.getItem("searchValue");
-  
+  const searchResult = JSON.parse(localStorage.getItem("foundMovies"));  
+
   const [isPopupWithNavOpen, setIsPopupWithNavOpen] = React.useState(false);
   const [isSearched, setIsSearched] = React.useState(false);
   const [foundMovies, setFoundMovies] = React.useState([]);
+  const [isSaved, setIsSaved] = React.useState(false);
   
   const [searchResultText, setSearchResultText] =
     React.useState('Ничего не найдено');
@@ -59,6 +59,21 @@ function App() {
     setIsPopupWithNavOpen(false);
   };
 
+  const handleLikeClick = () => {
+    console.log("лайкнул")
+  }
+
+  const handleRegisterSubmit = (registerData) => {
+    authApi
+      .register(registerData)
+      .then((responseData) => {
+        console.log(responseData)
+      })
+      .catch((err) => {
+        console.log(err)
+      })
+  }
+
 
   return (
     <div className="page">
@@ -80,10 +95,12 @@ function App() {
             <>
               <Header onNav={handleNavClick} />
               <Movies
+                isSaved={isSaved}
                 isSearched={isSearched}
                 onSearch={handleSearchSubmit}
                 foundMovies={foundMovies}
                 resultText={searchResultText}
+                onLike={handleLikeClick}
               />
               <Footer />
             </>
@@ -109,7 +126,7 @@ function App() {
           }
         />
         <Route path="/login" element={<Login />} />
-        <Route path="/register" element={<Register />} />
+        <Route path="/register" element={<Register onRegister={handleRegisterSubmit} />} />
       </Routes>
       <PopupWithNav onClose={handleClosePopup} isOpen={isPopupWithNavOpen} />
     </div>

@@ -1,7 +1,6 @@
 class Api {
-  constructor({ baseUrl, headers }) {
+  constructor({ baseUrl }) {
     this._url = baseUrl;
-    
   }
 
   _request(baseUrl, headers) {
@@ -15,21 +14,21 @@ class Api {
     return Promise.reject(`Ошибка: ${res.status}`);
   }
 
-  register({ email, password }) {
+  register({ name, email, password }) {
     return this._request(`${this._url}/signup`, {
-      method: "POST",
+      method: 'POST',
       headers: {
-        "Content-Type": "application/json",
+        'Content-Type': 'application/json',
       },
-      body: JSON.stringify({ email, password }),
+      body: JSON.stringify({ name, email, password }),
     });
   }
 
   login({ email, password }) {
     return this._request(`${this._url}/signin`, {
-      method: "POST",
+      method: 'POST',
       headers: {
-        "Content-Type": "application/json",
+        'Content-Type': 'application/json',
       },
       body: JSON.stringify({ email, password }),
     });
@@ -37,13 +36,18 @@ class Api {
 
   checkToken(token) {
     return this._request(`${this._url}/users/me`, {
-      method: "GET",
+      method: 'GET',
       headers: {
-        "Content-Type": "application/json",
-        'Authorization': `Bearer ${localStorage.getItem('jwt')}`,
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${localStorage.getItem('jwt')}`,
       },
     });
   }
-  
-
 }
+
+const authApi = new Api({
+  baseUrl: 'http://api.movies-lib.nomoreparties.sbs',
+  headers: { 'Content-Type': 'application/json' },
+});
+// const authApi = new AuthApi("http://localhost:3000");
+export default authApi;
