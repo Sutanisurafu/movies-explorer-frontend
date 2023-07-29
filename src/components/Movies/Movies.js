@@ -95,6 +95,13 @@ function Movies({ isSearched, foundMovies, onSearch, resultText }) {
     }
   }
 
+  React.useEffect(() => {
+    if (checkBoxState === "true") {
+      setIsChecked(true)
+    }
+  }, [])
+  
+
   //убирает кнопку more когда заканчивются карточки
   React.useEffect(() => {
     if (isChecked) {
@@ -104,15 +111,6 @@ function Movies({ isSearched, foundMovies, onSearch, resultText }) {
     }
   }, [slicedList]);
 
-  // React.useState(() => {
-  //   if (!isChecked) {
-  //     setSlicedList(getShortFilms(foundMovies))
-  //   }
-  // }, [isChecked])
-
-  // React.useEffect(() => {
-  //   if (!!searchResult) {handleCardsShow(searchResult)}
-  // }, [])
 
   return (
     <main className="section-movies">

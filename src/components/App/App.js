@@ -33,7 +33,7 @@ function App() {
       .then((movies) => {
         const searchResult = searchMovies(movies, searchValue);
         setFoundMovies(searchResult);
-        localStorage.setItem("foundMovies", JSON.stringify(foundMovies))
+        localStorage.setItem("foundMovies", JSON.stringify(searchResult))
         // localStorage.setItem("checkBoxState", isChecked)
         localStorage.setItem("searchValue", searchValue)
           setIsSearched(true);
@@ -43,6 +43,13 @@ function App() {
       });
   };
 
+  React.useEffect(() => {
+    if (!!searchResult) {
+      setFoundMovies(searchResult);
+      setIsSearched(true);
+    }
+    console.log(!!searchResult)
+  }, [])
 
 
   const handleNavClick = () => {
