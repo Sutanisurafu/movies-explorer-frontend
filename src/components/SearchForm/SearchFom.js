@@ -18,6 +18,8 @@ function SearchForm({ onSearch, clickCheckBox, isChecked }) {
     onSearch(form.search);
   }
 
+  
+
   return (
 <form className="search__container" onSubmit={handleSubmit}>
   <input value={form.searchValue} onChange={handleChange} className="search__input" type="text" placeholder="Фильм" name="search" required={true}></input>

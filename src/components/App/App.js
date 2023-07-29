@@ -38,7 +38,7 @@ function App() {
         localStorage.setItem("searchValue", searchValue)
           setIsSearched(true);
       })
-      .catch((error) => {
+      .catch(() => {
         setSearchResultText(errorsMessages.moviesResError);
       });
   };
@@ -48,7 +48,6 @@ function App() {
       setFoundMovies(searchResult);
       setIsSearched(true);
     }
-    console.log(!!searchResult)
   }, [])
 
 
@@ -59,7 +58,6 @@ function App() {
   const handleClosePopup = () => {
     setIsPopupWithNavOpen(false);
   };
-
 
 
   return (
