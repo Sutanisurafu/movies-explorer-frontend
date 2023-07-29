@@ -8,3 +8,7 @@ export const nameValidate = (name) => {
 export const emailValidate = (email) => {
   return emailRegex.test(email)
 }
+
+export const passwordValidate = (password) => {
+  return (password.length > 3);
+}

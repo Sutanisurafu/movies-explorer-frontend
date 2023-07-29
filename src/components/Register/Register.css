@@ -49,6 +49,7 @@
   font-style: normal;
   font-weight: 400;
   line-height: normal;
+  position: relative;
 }
 
 .register__input:focus {
@@ -87,6 +88,15 @@
   border-radius: 6px;
 }
 
+.register__submitBtn:disabled {
+  opacity: 0.3;
+}
+
+.register__submitBtn:disabled:hover {
+  opacity: 0.3;
+  cursor:no-drop;
+}
+
 .register__submitBtn:hover {
   opacity: 0.6;
   cursor: pointer;
@@ -121,6 +131,23 @@
 .register__register-link:hover {
   opacity: 0.6;
   cursor: pointer;
+}
+
+.register__input-container {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+}
+.register__span-error {
+  position: absolute;
+  top: 44px;
+  color: red;
+  font-size: 11px;
+}
+
+.test{
+  display: flex;
+  flex-direction: column;
 }
 
 @media screen and (max-width: 800px) {
