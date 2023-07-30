@@ -7,14 +7,7 @@ import moviesApi from "../../utils/MoviesApi";
 
 
 function Main() {
-const getFilms = () => {
-  moviesApi.getMovies()
-    .then((movies) => {
-      console.log(movies)
-    })
-}
 
-getFilms()
   return (
     <main>
       <Promo/>

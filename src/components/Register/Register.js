@@ -49,7 +49,6 @@ const Register = ({ onRegister }) => {
   },[form.password]);
 
   React.useEffect(() => {
-    console.log(isNameError === true && isEmailError === true && isPassError === true)
     if (!isNameError & !isEmailError & !isPassError) {
       setIsSubmitButtonVisible(true)
     } else {setIsSubmitButtonVisible(false)}

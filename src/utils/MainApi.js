@@ -43,6 +43,8 @@ class Api {
       },
     });
   }
+
+
 }
 
 const authApi = new Api({

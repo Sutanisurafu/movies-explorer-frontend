@@ -91,6 +91,15 @@
   border-radius: 4px;
 }
 
+.login__submitBtn:disabled {
+  opacity: 0.3;
+}
+
+.login__submitBtn:disabled:hover {
+  opacity: 0.3;
+  cursor:no-drop;
+}
+
 .login__submitBtn:hover {
   cursor: pointer;
   opacity: 0.6;
@@ -121,6 +130,19 @@
 
 .login__register-link:hover {
   opacity: 0.6;
+}
+
+.login__input-container {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+}
+
+.login__span-error {
+  position: absolute;
+  top: 56px;
+  color: red;
+  font-size: 11px;
 }
 
 @media screen and (max-width: 800px) {

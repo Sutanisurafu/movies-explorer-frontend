@@ -1,9 +1,17 @@
 import React from 'react';
+import { CurrentUserContextObj } from "../../contexts/CurrentUserContext";
 
-const Profile = () => {
+const Profile = ({ onLogout }) => {
+  const currentUser = React.useContext(CurrentUserContextObj);
+  
+  function onLogoutClick(event) {
+    event.preventDefault();
+    onLogout()
+  }
+
   return (
     <section className="profile">
-      <h1 className="profile__title">Привет, Виталий!</h1>
+      <h1 className="profile__title">Привет, {currentUser.name}</h1>
       <form className="profile__form">   
         <div className='profile__item'>
           <label className='profile__input-label'>Имя</label>
@@ -12,7 +20,7 @@ const Profile = () => {
               name="name"
               className="profile__input"
               placeholder="name"
-              defaultValue="Виталий"
+              defaultValue={currentUser.name}
               required={true}
             ></input> 
         </div>
@@ -21,14 +29,14 @@ const Profile = () => {
           <input
               type="email"
               name="email"
-              defaultValue="pochta@yandex.ru"
+              defaultValue={currentUser.email}
               className="profile__input"
               placeholder="email"
               required={true}>
           </input> 
         </div>
         <button className="profile__edit-btn">Редактировать</button>
-        <button className='profile__logout-btn'>Выйти из аккаунта</button>
+        <button onClick={onLogoutClick} className='profile__logout-btn'>Выйти из аккаунта</button>
       </form>
     </section>
   );

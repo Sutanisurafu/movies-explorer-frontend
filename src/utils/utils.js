@@ -1,7 +1,6 @@
 import { useResize } from "../hooks/use-resize";
 
 export const searchMovies = (moviesList, searchValue) => {
-  console.log(moviesList)
   const searchedMovies = moviesList.filter((movie) => {
     const nameRu = movie.nameRU.toLowerCase();
     const nameEn = movie.nameEN.toLowerCase();

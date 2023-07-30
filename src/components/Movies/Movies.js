@@ -1,4 +1,5 @@
 import React from 'react';
+import { useLocation } from 'react-router-dom';
 import SearchForm from '../SearchForm/SearchFom';
 import MoviesCardList from '../MoviesCardList/MoviesCardList';
 import Preloader from '../Preloader/Preloader';
@@ -6,6 +7,7 @@ import { useResize } from '../../hooks/use-resize';
 import { sliceMoviesList, getShortFilms } from '../../utils/utils';
 
 function Movies({ isSearched, foundMovies, onSearch, resultText, onLike, isSaved }) {
+  const location = useLocation();
   const searchResult = JSON.parse(localStorage.getItem('foundMovies'));
   const checkBoxState = localStorage.getItem('checkBoxState');
 
@@ -56,7 +58,7 @@ function Movies({ isSearched, foundMovies, onSearch, resultText, onLike, isSaved
       handleCardsShow(foundMovies);
       handleMoreButtonVisible(foundMovies);
     }
-  }, [foundMovies, width]);
+  }, [foundMovies, width, isChecked]);
 
   function handleMoreButtonClick() {
     if (isChecked) {
@@ -79,7 +81,6 @@ function Movies({ isSearched, foundMovies, onSearch, resultText, onLike, isSaved
         ),
       ]);
       handleMoreButtonVisible(foundMovies);
-      console.log(foundMovies.length, slicedList.length);
     }
   }
 
