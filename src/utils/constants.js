@@ -15,3 +15,5 @@ export const SCREEN_XL = 1280;
 
 export const nameRegex = /^[a-zA-Zа-яА-Я\s-]+$/;
 export const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+
+export const moviesUrl = "https://api.nomoreparties.co"

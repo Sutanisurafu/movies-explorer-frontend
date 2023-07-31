@@ -1,3 +1,5 @@
+import { moviesUrl } from "./constants";
+
 class Api {
   constructor({ baseUrl }) {
     this._url = baseUrl;
@@ -40,6 +42,48 @@ class Api {
       headers: {
         'Content-Type': 'application/json',
         Authorization: `Bearer ${localStorage.getItem('jwt')}`,
+      },
+    });
+  }
+
+  getMovies() {
+    return this._request(`${this._url}/movies`, {
+      method: 'get',
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${localStorage.getItem('jwt')}`,
+      }
+    });
+  }
+
+  postMovie(movie) {
+    return this._request(`${this._url}/movies`, {
+      method: 'post',
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${localStorage.getItem('jwt')}`,
+      },
+      body: JSON.stringify({
+        country: movie.country,
+        director: movie.director,
+        duration: movie.duration,
+        year: movie.year,
+        description: movie.description,
+        image: moviesUrl + movie.image.url,
+        trailerLink: movie.trailerLink,
+        thumbnail: moviesUrl + movie.image.formats.thumbnail.url,
+        movieId: movie.id,
+        nameRU: movie.nameRU,
+        nameEN: movie.nameEN
+      })
+    });
+  }
+
+  deleteMovie(cardId) {
+    return fetch(`${this._url}/movies/${cardId}`, {
+      method: 'DELETE',
+      headers: {
+        authorization: `Bearer ${localStorage.getItem('jwt')}`,
       },
     });
   }

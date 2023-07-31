@@ -24,3 +24,11 @@ export const getShortFilms = (moviesList) => {
 }
 
 
+// export const deleteFavoriteMovie = (savedMovies, remoteMovie) => {
+//   const newSavedMoviesList = savedMovies.filter((movie) => {
+//     if (movie._id === remoteMovie._id) {
+//       return delete savedMovies[movie];
+//     }
+//   })
+// }
+

@@ -6,7 +6,16 @@ import Preloader from '../Preloader/Preloader';
 import { useResize } from '../../hooks/use-resize';
 import { sliceMoviesList, getShortFilms } from '../../utils/utils';
 
-function Movies({ isSearched, foundMovies, onSearch, resultText, onLike, isSaved }) {
+function Movies({
+  isSearched,
+  foundMovies,
+  savedMovies,
+  onSearch,
+  resultText,
+  onLike,
+  isSaved,
+  onDisLike,
+}) {
   const location = useLocation();
   const searchResult = JSON.parse(localStorage.getItem('foundMovies'));
   const checkBoxState = localStorage.getItem('checkBoxState');
@@ -23,6 +32,8 @@ function Movies({ isSearched, foundMovies, onSearch, resultText, onLike, isSaved
   const moreBtnClassName = `section-movies__more-btn ${
     moreBtnEmergence && 'section-movies__more-btn_visible'
   }`;
+
+
 
   //управляет количеством отрисованных карточек в зависимости от ширины экрана
   function handleCardsShow(foundMovies) {
@@ -111,6 +122,8 @@ function Movies({ isSearched, foundMovies, onSearch, resultText, onLike, isSaved
     }
   }, [slicedList]);
 
+
+
   return (
     <main className="section-movies">
       <SearchForm
@@ -120,7 +133,15 @@ function Movies({ isSearched, foundMovies, onSearch, resultText, onLike, isSaved
       />
       {isSearched ? (
         <>
-          <MoviesCardList moviesList={slicedList} resultText={resultText} onLike={onLike} isSaved={isSaved} />
+          <MoviesCardList
+            moviesList={slicedList}
+            savedMoviesList={savedMovies}
+            resultText={resultText}
+            onLike={onLike}
+            onDisLike={onDisLike}
+            isSaved={isSaved}
+            isFavorite={false}
+          />
           <button onClick={handleMoreButtonClick} className={moreBtnClassName}>
             Ещё
           </button>

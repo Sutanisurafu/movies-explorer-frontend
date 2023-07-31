@@ -1,15 +1,26 @@
 import React from "react";
 import SearchForm from "../SearchForm/SearchFom";
 import MoviesCardList from "../MoviesCardList/MoviesCardList";
-import {savedMoviesData} from "../../utils/constants"
+import authApi from "../../utils/MainApi";
 
-function SavedMovies() {
+function SavedMovies({ savedMovies, onDisLike }) {
+  // const [favoriteMovies, setFavoriteMovies] = React.useState(savedMovies);
+  // React.useEffect(() => {
+  //   authApi.getMovies()
+  //   .then((moviesData) => {
+  //     setFavoriteMovies(moviesData)
+  //   })
+  // }, [savedMovies])
+
   return (
           <main className="section-favorite">
             <SearchForm/>
-            {/* <MoviesCardList
+            <MoviesCardList
+            isFavorite={true}
             isSaved={true}
-            moviesData={savedMoviesData}/> */}
+            moviesList={savedMovies}
+            savedMoviesList={savedMovies}
+            onDisLike={onDisLike}/>
           </main>
   )
 }

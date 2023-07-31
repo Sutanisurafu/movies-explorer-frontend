@@ -1,3 +1,5 @@
+import { moviesUrl } from "./constants";
+
 class MoviesApi {
   constructor({ baseUrl, headers }) {
     this._url = baseUrl;
@@ -15,22 +17,22 @@ class MoviesApi {
     return Promise.reject(`Ошибка: ${res.status}`);
   }
 
-
   getMovies() {
     return this._request(this._url, {
-      method: "GET",
+      method: 'GET',
       headers: {
-        "Content-Type": "application/json",
-      }
-    })
+        'Content-Type': 'application/json',
+      },
+    });
   }
+
 }
 
 const moviesApi = new MoviesApi({
-  baseUrl: "https://api.nomoreparties.co/beatfilm-movies",
+  baseUrl: `${moviesUrl}/beatfilm-movies`,
   headers: {
-    "Content-Type": "application/json",
-  }
+    'Content-Type': 'application/json',
+  },
 });
 
 export default moviesApi;

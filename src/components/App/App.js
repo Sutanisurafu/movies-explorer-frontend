@@ -1,5 +1,11 @@
 import React from 'react';
-import { Route, Routes, Navigate, useNavigate, useLocation } from 'react-router-dom';
+import {
+  Route,
+  Routes,
+  Navigate,
+  useNavigate,
+  useLocation,
+} from 'react-router-dom';
 import './App.css';
 import authApi from '../../utils/MainApi';
 import Main from '../Main/Main';
@@ -15,8 +21,7 @@ import NotFound from '../NotFound/NotFound';
 import moviesApi from '../../utils/MoviesApi';
 import { searchMovies } from '../../utils/utils';
 import { errorsMessages } from '../../utils/constants';
-import { getShortFilms } from '../../utils/utils';
-import { CurrentUserContextObj } from "../../contexts/CurrentUserContext";
+import { CurrentUserContextObj } from '../../contexts/CurrentUserContext';
 
 function App() {
   const navigate = useNavigate();
@@ -24,6 +29,7 @@ function App() {
   const [isPopupWithNavOpen, setIsPopupWithNavOpen] = React.useState(false);
   const [isSearched, setIsSearched] = React.useState(false);
   const [foundMovies, setFoundMovies] = React.useState([]);
+  const [savedMovies, setSavedMovies] = React.useState([]);
   const [isSaved, setIsSaved] = React.useState(false);
   const [loggedIn, setLoggedIn] = React.useState(false);
   const [currentUser, setCurrentUser] = React.useState('');
@@ -31,8 +37,20 @@ function App() {
   const [searchResultText, setSearchResultText] =
     React.useState('Ничего не найдено');
 
+  // React.useEffect(() => {
+  //   loggedIn & (location.pathname !== '/movies') && navigate('/');
+  // }, [loggedIn]);
+
   React.useEffect(() => {
-    (loggedIn & (location.pathname !== "/movies")) && navigate('/');
+    loggedIn &&
+      authApi
+        .getMovies()
+        .then((moviesData) => {
+          setSavedMovies(moviesData);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
   }, [loggedIn]);
 
   React.useEffect(() => {
@@ -46,7 +64,6 @@ function App() {
         const searchResult = searchMovies(movies, searchValue);
         setFoundMovies(searchResult);
         localStorage.setItem('foundMovies', JSON.stringify(searchResult));
-        // localStorage.setItem("checkBoxState", isChecked)
         localStorage.setItem('searchValue', searchValue);
         setIsSearched(true);
       })
@@ -70,8 +87,27 @@ function App() {
     setIsPopupWithNavOpen(false);
   };
 
-  const handleLikeClick = () => {
-    console.log('лайкнул');
+  const handleLikeClick = (card) => {
+    authApi
+      .postMovie(card)
+      .then((response) => {
+        setSavedMovies([...savedMovies, response])
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+
+  const handleDisLikeClick = (card) => {
+    console.log('дизлайкнул', card);
+    authApi.deleteMovie(card._id).then((res) => {
+      const filteredMovies = savedMovies.filter((movie) => {
+        if (movie._id !== card._id) {
+          return movie;
+        }
+      })
+      setSavedMovies(filteredMovies)
+    });
   };
 
   const tokenCheck = () => {
@@ -84,6 +120,19 @@ function App() {
           if (res) {
             setLoggedIn(true);
             setCurrentUser(res);
+            switch (location.pathname) {
+              case '/profile':
+                navigate('/profile');
+                break;
+              case '/saved-movies':
+                navigate('/saved-movies');
+                break;
+              default:
+                navigate('/');
+            }
+            // navigate('/');
+          } else {
+            console.log('с токеном что-то не так');
           }
         })
         .catch((err) => console.log(err));
@@ -159,7 +208,9 @@ function App() {
                   onSearch={handleSearchSubmit}
                   foundMovies={foundMovies}
                   resultText={searchResultText}
+                  savedMovies={savedMovies}
                   onLike={handleLikeClick}
+                  onDisLike={handleDisLikeClick}
                 />
                 <Footer />
               </>
@@ -170,7 +221,10 @@ function App() {
             element={
               <>
                 <Header />
-                <SavedMovies />
+                <SavedMovies
+                  savedMovies={savedMovies}
+                  onDisLike={handleDisLikeClick}
+                />
                 <Footer />
               </>
             }
