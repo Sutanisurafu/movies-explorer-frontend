@@ -88,25 +88,32 @@ function App() {
   };
 
   const handleLikeClick = (card) => {
-    authApi
-      .postMovie(card)
-      .then((response) => {
-        setSavedMovies([...savedMovies, response])
-      })
-      .catch((err) => {
-        console.log(err);
-      });
+    const isLiked = savedMovies.some((movie) => movie.movieId === card.id);
+    if (!isLiked) {
+      authApi
+        .postMovie(card)
+        .then((response) => {
+          setSavedMovies([...savedMovies, response]);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    } else {
+      const dislikedCard = savedMovies.find((movie) => movie.movieId === card.id);
+
+      console.log(dislikedCard)
+      handleDisLikeClick(dislikedCard)
+    }
   };
 
   const handleDisLikeClick = (card) => {
-    console.log('дизлайкнул', card);
     authApi.deleteMovie(card._id).then((res) => {
       const filteredMovies = savedMovies.filter((movie) => {
         if (movie._id !== card._id) {
           return movie;
         }
-      })
-      setSavedMovies(filteredMovies)
+      });
+      setSavedMovies(filteredMovies);
     });
   };
 
