@@ -1,11 +1,12 @@
 import React from 'react';
 import { moviesUrl } from '../../utils/constants';
 import { classes } from '../../utils/constants';
-import { useLocation } from 'react-router-dom';
+import { useNavigate, useLocation } from 'react-router-dom';
+import { getTimeFromMins } from '../../utils/utils';
 function MovieCard({ card, isSaved, savedMovies, isLiked, onLike, onDisLike }) {
   const cardImage = isSaved ? card.image : `${moviesUrl + card.image.url}`;
   const location = useLocation();
-  // const [onLikeClick, setOnLikeClick] = React.useState();
+  const navigate = useNavigate();  // const [onLikeClick, setOnLikeClick] = React.useState();
   
   function like() {
     onLike(card);
@@ -13,6 +14,10 @@ function MovieCard({ card, isSaved, savedMovies, isLiked, onLike, onDisLike }) {
 
   function disLike() {
     onDisLike(card);
+  }
+
+  function openTrailer() {
+    window.open(card.trailerLink, '_blank')
   }
 
   // React.useEffect(() => {
@@ -26,9 +31,8 @@ function MovieCard({ card, isSaved, savedMovies, isLiked, onLike, onDisLike }) {
       <div className="movie-card__header-container">
         <div className="movie-card__text-container">
           <h2 className="movie-card__title">{card.nameRU}</h2>
-          <p className="movie-card__duration">{card.duration}</p>
+          <p className="movie-card__duration">{getTimeFromMins(card.duration)}</p>
         </div>
-        {/* <button onClick={onDisLikeClick}>DISLIKE</button> */}
         <button
           onClick={() => {
             if (location.pathname === "/movies") {
@@ -47,6 +51,7 @@ function MovieCard({ card, isSaved, savedMovies, isLiked, onLike, onDisLike }) {
         />
       </div>
       <img
+        onClick={openTrailer}
         className="movie-card__image"
         src={cardImage}
         alt="Постер фильма"

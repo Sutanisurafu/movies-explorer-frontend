@@ -19,7 +19,7 @@ import Register from '../Register/Register';
 import PopupWithNav from '../PopupWithNav/PopupWithNav';
 import NotFound from '../NotFound/NotFound';
 import moviesApi from '../../utils/MoviesApi';
-import { searchMovies } from '../../utils/utils';
+import { searchMovies, getTimeFromMins } from '../../utils/utils';
 import { errorsMessages } from '../../utils/constants';
 import { CurrentUserContextObj } from '../../contexts/CurrentUserContext';
 
@@ -41,6 +41,8 @@ function App() {
   //   loggedIn & (location.pathname !== '/movies') && navigate('/');
   // }, [loggedIn]);
 
+
+  console.log(getTimeFromMins(200) )
   React.useEffect(() => {
     loggedIn &&
       authApi
