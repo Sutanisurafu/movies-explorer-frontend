@@ -1,5 +1,13 @@
 import { useResize } from "../hooks/use-resize";
 
+
+
+
+export const isSectionFavorites = (location) => {
+  return (location.pathname === '/saved-movies')
+}
+
+
 export const searchMovies = (moviesList, searchValue) => {
   const searchedMovies = moviesList.filter((movie) => {
     const nameRu = movie.nameRU.toLowerCase();
@@ -29,11 +37,10 @@ export const getTimeFromMins = (mins) => {
 return hours + 'ч ' + minutes + 'м';
 };
 
-// export const deleteFavoriteMovie = (savedMovies, remoteMovie) => {
-//   const newSavedMoviesList = savedMovies.filter((movie) => {
-//     if (movie._id === remoteMovie._id) {
-//       return delete savedMovies[movie];
-//     }
-//   })
-// }
+export const getMoreButtonVisible = (moviesList, slicedList) => {
+  return moviesList.length > slicedList.length;
+}
 
+export const isLiked = (card, savedMovies) => {
+  return savedMovies.some((movie) => movie.movieId === card.id)
+}

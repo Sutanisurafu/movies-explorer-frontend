@@ -46,6 +46,19 @@ class Api {
     });
   }
 
+  editUser({ email, name}) {
+    return this._request(`${this._url}/users/me`, {
+      method: 'PATCH',
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${localStorage.getItem('jwt')}`,
+      },
+      body: JSON.stringify({
+        email, name
+      })
+    });
+  }
+
   getMovies() {
     return this._request(`${this._url}/movies`, {
       method: 'get',
@@ -91,9 +104,9 @@ class Api {
 
 }
 
-const authApi = new Api({
+const mainApi = new Api({
   baseUrl: 'http://api.movies-lib.nomoreparties.sbs',
   headers: { 'Content-Type': 'application/json' },
 });
 // const authApi = new AuthApi("http://localhost:3000");
-export default authApi;
+export default mainApi;
