@@ -18,68 +18,38 @@ import Login from '../Login/Login';
 import Register from '../Register/Register';
 import PopupWithNav from '../PopupWithNav/PopupWithNav';
 import NotFound from '../NotFound/NotFound';
+import mainApi from '../../utils/MainApi';
 import moviesApi from '../../utils/MoviesApi';
-import { searchMovies, getTimeFromMins } from '../../utils/utils';
+import { searchMovies } from '../../utils/utils';
 import { errorsMessages } from '../../utils/constants';
 import { CurrentUserContextObj } from '../../contexts/CurrentUserContext';
+import ProtectedRouteElement from '../ProtectedRoute/ProtectedRoute';
 
 function App() {
   const navigate = useNavigate();
-  const searchResult = JSON.parse(localStorage.getItem('foundMovies'));
+
   const [isPopupWithNavOpen, setIsPopupWithNavOpen] = React.useState(false);
-  const [isSearched, setIsSearched] = React.useState(false);
-  const [foundMovies, setFoundMovies] = React.useState([]);
-  const [savedMovies, setSavedMovies] = React.useState([]);
-  const [isSaved, setIsSaved] = React.useState(false);
   const [loggedIn, setLoggedIn] = React.useState(false);
   const [currentUser, setCurrentUser] = React.useState('');
   const location = useLocation();
-  const [searchResultText, setSearchResultText] =
-    React.useState('Ничего не найдено');
 
-  // React.useEffect(() => {
-  //   loggedIn & (location.pathname !== '/movies') && navigate('/');
-  // }, [loggedIn]);
+  const [moviesList, setMoviesList] = React.useState([]); //Список всех доступных фильмов
+  const [savedMoviesList, setSavedMoviesList] = React.useState([]); //список сохранённых(лайкнутых) фильмов
+  const [isDataLoading, setIsDataLoading] = React.useState(true);
+  const [loginServerError, setLoginServerError] = React.useState("");
+  const [registerServerError, setRegisterServerError] = React.useState("");
 
-
-  console.log(getTimeFromMins(200) )
   React.useEffect(() => {
     loggedIn &&
-      authApi
-        .getMovies()
-        .then((moviesData) => {
-          setSavedMovies(moviesData);
-        })
-        .catch((err) => {
-          console.log(err);
-        });
+      Promise.all([moviesApi.getMovies(), mainApi.getMovies()]).then(
+        ([movies, savedMovies]) => {
+          setMoviesList(movies);
+          setSavedMoviesList(savedMovies);
+        }
+      );
   }, [loggedIn]);
 
-  React.useEffect(() => {
-    tokenCheck();
-  }, []);
 
-  const handleSearchSubmit = (searchValue) => {
-    moviesApi
-      .getMovies()
-      .then((movies) => {
-        const searchResult = searchMovies(movies, searchValue);
-        setFoundMovies(searchResult);
-        localStorage.setItem('foundMovies', JSON.stringify(searchResult));
-        localStorage.setItem('searchValue', searchValue);
-        setIsSearched(true);
-      })
-      .catch(() => {
-        setSearchResultText(errorsMessages.moviesResError);
-      });
-  };
-
-  React.useEffect(() => {
-    if (!!searchResult) {
-      setFoundMovies(searchResult);
-      setIsSearched(true);
-    }
-  }, []);
 
   const handleNavClick = () => {
     setIsPopupWithNavOpen(true);
@@ -89,36 +59,6 @@ function App() {
     setIsPopupWithNavOpen(false);
   };
 
-  const handleLikeClick = (card) => {
-    const isLiked = savedMovies.some((movie) => movie.movieId === card.id);
-    if (!isLiked) {
-      authApi
-        .postMovie(card)
-        .then((response) => {
-          setSavedMovies([...savedMovies, response]);
-        })
-        .catch((err) => {
-          console.log(err);
-        });
-    } else {
-      const dislikedCard = savedMovies.find((movie) => movie.movieId === card.id);
-
-      console.log(dislikedCard)
-      handleDisLikeClick(dislikedCard)
-    }
-  };
-
-  const handleDisLikeClick = (card) => {
-    authApi.deleteMovie(card._id).then((res) => {
-      const filteredMovies = savedMovies.filter((movie) => {
-        if (movie._id !== card._id) {
-          return movie;
-        }
-      });
-      setSavedMovies(filteredMovies);
-    });
-  };
-
   const tokenCheck = () => {
     const jwt = localStorage.getItem('jwt');
 
@@ -126,20 +66,10 @@ function App() {
       authApi
         .checkToken(jwt)
         .then((res) => {
+          setIsDataLoading(false);
           if (res) {
             setLoggedIn(true);
             setCurrentUser(res);
-            switch (location.pathname) {
-              case '/profile':
-                navigate('/profile');
-                break;
-              case '/saved-movies':
-                navigate('/saved-movies');
-                break;
-              default:
-                navigate('/');
-            }
-            // navigate('/');
           } else {
             console.log('с токеном что-то не так');
           }
@@ -147,17 +77,28 @@ function App() {
         .catch((err) => console.log(err));
     } else {
       console.log('необходима авторизация');
+      setIsDataLoading(false);
+      navigate("/login")
     }
   };
+
+  React.useEffect(() => {
+    tokenCheck();
+  }, []);
 
   const handleRegisterSubmit = (registerData) => {
     authApi
       .register(registerData)
       .then((responseData) => {
-        console.log(responseData);
+        const loginData = {email: registerData.email, password: registerData.password}
+        handleLoginSubmit(loginData);
       })
       .catch((err) => {
-        console.log(err);
+        if (err === "Ошибка: 409") {
+          setRegisterServerError("Такой email уже зарегистрирован!")
+        } else {
+          console.log(err);
+        }
       });
   };
 
@@ -169,16 +110,68 @@ function App() {
         tokenCheck();
       })
       .catch((err) => {
-        console.log(err);
+        if (err === "Ошибка: 401") {
+          setLoginServerError("Неправильные почта или пароль!")
+        } else {
+          console.log(err);
+        }
       });
   };
 
   const handleLogoutClick = () => {
     setLoggedIn(false);
     localStorage.clear();
-    setIsSearched(false);
     navigate('/main');
   };
+
+  const handleLikeClick = (card) => {
+    const isLiked = savedMoviesList.some((movie) => movie.movieId === card.id);
+    if (!isLiked) {
+      authApi
+        .postMovie(card)
+        .then((response) => {
+          setSavedMoviesList([...savedMoviesList, response]);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    } else {
+      const dislikedCard = savedMoviesList.find(
+        (movie) => movie.movieId === card.id
+      );
+
+      handleDisLikeClick(dislikedCard);
+    }
+  };
+
+  const handleDisLikeClick = (card) => {
+    authApi.deleteMovie(card._id).then((res) => {
+      const filteredMovies = savedMoviesList.filter((movie) => {
+        if (movie._id !== card._id) {
+          return movie;
+        }
+      });
+      setSavedMoviesList(filteredMovies);
+    })
+    .catch((err) => {
+      console.log(err)
+    })
+  };
+
+  const handleProfileSubmit = (value) => {
+    console.log(value)
+    mainApi.editUser(value)
+    .then((res) => {
+      console.log(res)
+    })
+    .catch((err) => {
+      console.log(err)
+    })
+  }
+
+  if (isDataLoading) {
+    return;
+  }
 
   return (
     <CurrentUserContextObj.Provider value={currentUser}>
@@ -199,61 +192,61 @@ function App() {
           <Route
             path="/main"
             element={
-              <>
-                <Header />
-                <Main />
-                <Footer />
-              </>
+              loggedIn ? (
+                <Navigate to="/movies" replace />
+              ) : (
+                <>
+                  <Header />
+                  <Main />
+                  <Footer />
+                </>
+              )
             }
           />
           <Route
             path="/movies"
             element={
-              <>
-                <Header onNav={handleNavClick} />
-                <Movies
-                  isSaved={isSaved}
-                  isSearched={isSearched}
-                  onSearch={handleSearchSubmit}
-                  foundMovies={foundMovies}
-                  resultText={searchResultText}
-                  savedMovies={savedMovies}
-                  onLike={handleLikeClick}
-                  onDisLike={handleDisLikeClick}
-                />
-                <Footer />
-              </>
+              <ProtectedRouteElement
+                element={Movies}
+                loggedIn={loggedIn}
+                onNav={handleNavClick}
+                moviesList={moviesList}
+                savedMovies={savedMoviesList}
+                onLike={handleLikeClick}
+              />
             }
           />
           <Route
             path="/saved-movies"
             element={
-              <>
-                <Header />
-                <SavedMovies
-                  savedMovies={savedMovies}
-                  onDisLike={handleDisLikeClick}
-                />
-                <Footer />
-              </>
+              <ProtectedRouteElement
+              loggedIn={loggedIn}
+              element={SavedMovies}
+              isSaved={true}
+              onDisLike={handleDisLikeClick}
+              savedMovies={savedMoviesList}
+              moviesList={moviesList}
+              />
             }
           />
           <Route
             path="/profile"
             element={
-              <>
-                <Header />
-                <Profile onLogout={handleLogoutClick} />
-              </>
+              <ProtectedRouteElement
+              onsubmit={handleProfileSubmit}
+              element={Profile}
+              loggedIn={loggedIn}
+              onLogout={handleLogoutClick}
+              />
             }
           />
           <Route
             path="/login"
-            element={<Login onLogin={handleLoginSubmit} />}
+            element={!loggedIn ? (<Login serverError={loginServerError} onLogin={handleLoginSubmit}/>) : (<Navigate to="/movies" replace/>) }
           />
           <Route
             path="/register"
-            element={<Register onRegister={handleRegisterSubmit} />}
+            element={ !loggedIn ? (<Register serverError={registerServerError} onRegister={handleRegisterSubmit} />) : (<Navigate to="/movies" replace/>)}
           />
         </Routes>
         <PopupWithNav onClose={handleClosePopup} isOpen={isPopupWithNavOpen} />

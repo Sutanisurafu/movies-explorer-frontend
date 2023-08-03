@@ -2,12 +2,14 @@ import React from 'react';
 import { NavLink } from 'react-router-dom';
 import { ReactComponent as Logo } from '../../images/logo.svg';
 import useForm from '../../hooks/useForm';
-import { emailValidate, passwordValidate } from '../../utils/validators';
+import {   emailInputValidate,
+  passwordValidate, } from '../../utils/validators';
 
-const Login = ({ onLogin }) => {
-  const [isEmailError, setIsEmailError] = React.useState(false);
-  const [isPassError, setIsPassError] = React.useState(false);
-  const [isSubmitBtnVisible, setIsSubmitButtonVisible] = React.useState(false);
+const Login = ({ onLogin, serverError }) => {
+  const [isFormValid, setIsFormValid] = React.useState(false);
+  const [emailErrorMessage, setEmailErrorMessage] = React.useState('');
+  const [passwordErrorMessage, setPasswordErrorMessage] = React.useState('');
+
   const { form, errors, handleChange } = useForm({
     email: '',
     password: '',
@@ -22,28 +24,24 @@ const Login = ({ onLogin }) => {
   }
 
   React.useEffect(() => {
-    if (emailValidate(form.email)) {
-      setIsEmailError(false);
-    } else {
-      setIsEmailError(true);
-    }
-  },[form.email]);
+    setEmailErrorMessage(emailInputValidate(form.email));
+  }, [form.email]);
 
   React.useEffect(() => {
-    if (passwordValidate(form.password)) {
-      setIsPassError(false);
-    } else {
-      setIsPassError(true);
-    }
-  },[form.password]);
+    setPasswordErrorMessage(passwordValidate(form.password));
+  }, [form.password]);
+
 
   React.useEffect(() => {
-
-    if (!isEmailError & !isPassError) {
-      setIsSubmitButtonVisible(true)
-    } else {setIsSubmitButtonVisible(false)}
-  }, [isEmailError, isPassError])
-
+    if (
+      (emailErrorMessage === '') &
+      (passwordErrorMessage === '')
+    ) {
+      setIsFormValid(false);
+    } else {
+      setIsFormValid(true);
+    }
+  }, [ emailErrorMessage, passwordErrorMessage, form.email, form.password]);
 
 
   return (
@@ -64,10 +62,9 @@ const Login = ({ onLogin }) => {
             value={form.email}
           ></input>
           <span
-            style={{ visibility: isEmailError ? 'visible' : 'hidden' }}
             className="login__span-error"
           >
-            некорректный email
+            {emailErrorMessage}
           </span>
         </div>
         <div className="login__input-container">
@@ -82,13 +79,13 @@ const Login = ({ onLogin }) => {
             value={form.password}
           ></input>
           <span
-            style={{ visibility: isPassError ? 'visible' : 'hidden' }}
             className="login__span-error"
           >
-            слишком короткий пароль
+           {passwordErrorMessage}
           </span>
         </div>
-        <button disabled={!isSubmitBtnVisible ? true : false} type="submit" className="login__submitBtn">
+        <span className='login__form-error'>{serverError}</span>
+        <button disabled={isFormValid ? true : false} type="submit" className="login__submitBtn">
           Войти
         </button>
         <span className="login_register-span">

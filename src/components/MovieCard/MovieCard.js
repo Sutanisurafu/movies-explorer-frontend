@@ -1,30 +1,34 @@
 import React from 'react';
 import { moviesUrl } from '../../utils/constants';
 import { classes } from '../../utils/constants';
-import { useNavigate, useLocation } from 'react-router-dom';
+import { useLocation } from 'react-router-dom';
 import { getTimeFromMins } from '../../utils/utils';
-function MovieCard({ card, isSaved, savedMovies, isLiked, onLike, onDisLike }) {
-  const cardImage = isSaved ? card.image : `${moviesUrl + card.image.url}`;
+
+function MovieCard({ card, isSaved, savedMovies, onLike, onDisLike, isFavorites }) {
+
+  const cardImage = isFavorites ? card.image : `${moviesUrl + card.image.url}`;
   const location = useLocation();
-  const navigate = useNavigate();  // const [onLikeClick, setOnLikeClick] = React.useState();
+  // const [onLikeClick, setOnLikeClick] = React.useState();
   
-  function like() {
-    onLike(card);
-  }
+  // function like() {
+  //   onLike(card);
+  // }
 
-  function disLike() {
-    onDisLike(card);
-  }
+  // function disLike() {
+  //   onDisLike(card);
+  // }
 
-  function openTrailer() {
-    window.open(card.trailerLink, '_blank')
-  }
 
   // React.useEffect(() => {
   //   if (location.pathname === "/movies") {
   //     setOnLikeClick(like)
   //   } else {setOnLikeClick(disLike)}
   // }, [location.pathname])
+
+  
+  function openTrailer() {
+    window.open(card.trailerLink, '_blank')
+  }
 
   return (
     <article className="movie-card">
@@ -33,14 +37,18 @@ function MovieCard({ card, isSaved, savedMovies, isLiked, onLike, onDisLike }) {
           <h2 className="movie-card__title">{card.nameRU}</h2>
           <p className="movie-card__duration">{getTimeFromMins(card.duration)}</p>
         </div>
+        {/* <button onClick={onDisLikeClick}>DISLIKE</button> */}
         <button
-          onClick={() => {
-            if (location.pathname === "/movies") {
-              like()
-            } else {disLike()}
-          }}
+        onClick={() => {
+          !isFavorites ? onLike(card) : onDisLike(card);
+        }}
+          // onClick={() => {
+          //   if (location.pathname === "/movies") {
+          //     like()
+          //   } else {disLike()}
+          // }}
           className={
-            !isSaved
+            !isFavorites
               ? `${classes.favoriteBtn} ${
                   card.id &&
                   savedMovies.some((movie) => movie.movieId === card.id) &&

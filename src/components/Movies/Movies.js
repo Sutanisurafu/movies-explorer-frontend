@@ -3,153 +3,93 @@ import { useLocation } from 'react-router-dom';
 import SearchForm from '../SearchForm/SearchFom';
 import MoviesCardList from '../MoviesCardList/MoviesCardList';
 import Preloader from '../Preloader/Preloader';
-import { useResize } from '../../hooks/use-resize';
-import { sliceMoviesList, getShortFilms } from '../../utils/utils';
+import Header from '../Header/Header';
+import Footer from '../Footer/Footer';
 
-function Movies({
-  isSearched,
-  foundMovies,
-  savedMovies,
-  onSearch,
-  resultText,
-  onLike,
-  isSaved,
-  onDisLike,
-}) {
-  const location = useLocation();
-  const searchResult = JSON.parse(localStorage.getItem('foundMovies'));
+import { getShortFilms, searchMovies } from '../../utils/utils';
+
+function Movies({ moviesList, onLike, savedMovies, onNav }) 
+{
+
+  const localMovies = JSON.parse(localStorage.getItem('foundMovies'));
   const checkBoxState = localStorage.getItem('checkBoxState');
+  const searchValue = localStorage.getItem('searchValue');
 
-  const [moreBtnEmergence, setMoreBtnEmergence] = React.useState(false);
-  const [slicedList, setSlicedList] = React.useState(foundMovies);
-  const [shortSlicdeList, setShortSlicedList] = React.useState(
-    getShortFilms(foundMovies)
-  );
-  const [numberOfAddedMovies, setNumberOfAddedMovies] = React.useState(0);
-  const { width, isScreenMobile, isScreenPC } = useResize();
-  const [isChecked, setIsChecked] = React.useState(false);
-
-  const moreBtnClassName = `section-movies__more-btn ${
-    moreBtnEmergence && 'section-movies__more-btn_visible'
-  }`;
+  const [isSearched, setIsSearched] = React.useState(false); //Был ли совершен поиск?
+  const [foundMovies, setFoundMovies] = React.useState([]); //найденые фильмы после поиска
+  const [isChecked, setIsChecked] = React.useState(false); //состояние чек бокса
 
 
-
-  //управляет количеством отрисованных карточек в зависимости от ширины экрана
-  function handleCardsShow(foundMovies) {
-    switch (true) {
-      case isScreenPC:
-        setSlicedList(sliceMoviesList(foundMovies, 0, 12));
-        setNumberOfAddedMovies(3);
-        break;
-      case isScreenMobile:
-        setSlicedList(sliceMoviesList(foundMovies, 0, 5));
-        setNumberOfAddedMovies(2);
-        break;
-      default:
-        setSlicedList(sliceMoviesList(foundMovies, 0, 8));
-        setNumberOfAddedMovies(2);
-    }
-  }
-
-  //управляет отрисовкой кнопки more
-  function handleMoreButtonVisible(a) {
-    if (a.length > slicedList.length) {
-      setMoreBtnEmergence(true);
-    } else {
-      setMoreBtnEmergence(false);
-    }
-  }
-
-  React.useEffect(() => {
+ 
+//тут будет только логика 
+  function handleSubmit(value) {
+    const searchResult = searchMovies(moviesList, value);
+    localStorage.setItem("foundMovies", JSON.stringify(searchResult))
+    localStorage.setItem('searchValue', value);
+    setIsSearched(true);
     if (isChecked) {
-      handleMoreButtonVisible(getShortFilms(foundMovies));
-      handleCardsShow(getShortFilms(foundMovies));
+      setFoundMovies(getShortFilms(searchResult));
     } else {
-      handleCardsShow(foundMovies);
-      handleMoreButtonVisible(foundMovies);
-    }
-  }, [foundMovies, width, isChecked]);
-
-  function handleMoreButtonClick() {
-    if (isChecked) {
-      setSlicedList([
-        ...slicedList,
-        ...sliceMoviesList(
-          getShortFilms(foundMovies),
-          slicedList.length,
-          slicedList.length + numberOfAddedMovies
-        ),
-      ]);
-      handleMoreButtonVisible(getShortFilms(foundMovies));
-    } else {
-      setSlicedList([
-        ...slicedList,
-        ...sliceMoviesList(
-          foundMovies,
-          slicedList.length,
-          slicedList.length + numberOfAddedMovies
-        ),
-      ]);
-      handleMoreButtonVisible(foundMovies);
+      setFoundMovies(searchResult);
     }
   }
+
 
   function handleCheckBoxClick() {
-    setIsChecked(!isChecked);
-    localStorage.setItem('checkBoxState', !isChecked);
-    if (!isChecked) {
-      handleCardsShow(getShortFilms(foundMovies));
-      handleMoreButtonVisible(getShortFilms(foundMovies));
-    } else {
-      handleCardsShow(foundMovies);
-      handleMoreButtonVisible(foundMovies);
-    }
+    setIsChecked(!isChecked)
+    localStorage.setItem("checkBoxState", !isChecked)
   }
 
-  React.useEffect(() => {
-    if (checkBoxState === 'true') {
-      setIsChecked(true);
-    }
-  }, []);
 
-  //убирает кнопку more когда заканчивются карточки
   React.useEffect(() => {
-    if (isChecked) {
-      handleMoreButtonVisible(getShortFilms(foundMovies));
+    if (localMovies) {
+      setFoundMovies(localMovies)
+      setIsSearched(true);
     } else {
-      handleMoreButtonVisible(foundMovies);
+      setIsSearched(false);
     }
-  }, [slicedList]);
+  }, [])
+
+  
+  React.useEffect(() => {
+    if (checkBoxState === "true") {
+      setIsChecked(true);
+      setFoundMovies(getShortFilms(localMovies))
+    } else {
+      setIsChecked(false)
+      setFoundMovies(localMovies)
+  }}, [checkBoxState])
+
+
+  
+
 
 
 
   return (
+<>
+<Header onNav={onNav}/>
     <main className="section-movies">
       <SearchForm
-        onSearch={onSearch}
-        clickCheckBox={handleCheckBoxClick}
-        isChecked={isChecked}
+      onCheckBox={handleCheckBoxClick}
+      onSearch={handleSubmit}
+      isChecked={isChecked}
       />
       {isSearched ? (
         <>
           <MoviesCardList
-            moviesList={slicedList}
-            savedMoviesList={savedMovies}
-            resultText={resultText}
+            savedMovies={savedMovies}
             onLike={onLike}
-            onDisLike={onDisLike}
-            isSaved={isSaved}
-            isFavorite={false}
+            isChecked={isChecked}
+            foundMovies={foundMovies}
           />
-          <button onClick={handleMoreButtonClick} className={moreBtnClassName}>
-            Ещё
-          </button>
         </>
       ) : (
         <Preloader />
       )}
     </main>
+    <Footer/>
+</>
   );
 }
 export default Movies;

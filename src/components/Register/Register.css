@@ -30,6 +30,7 @@
 }
 
 .register__form {
+  position: relative;
   display: flex;
   flex-direction: column;
 }
@@ -70,6 +71,15 @@
 
 .register__label:last-of-type {
   margin-top: 24px;
+}
+
+.register__form-error {
+  text-align: center;
+  position: absolute;
+  bottom: 80px;
+  width: 100%;
+  color: red;
+
 }
 
 .register__submitBtn { 

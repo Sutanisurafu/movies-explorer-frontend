@@ -23,6 +23,7 @@
 }
 
 .login__form {
+  position: relative;
   display: flex;
   flex-direction: column;
 }
@@ -73,6 +74,14 @@
 
 .login__label:last-of-type {
   margin-top: 12px;
+}
+
+.login__form-error {
+  text-align: center;
+  position: absolute;
+  bottom: 80px;
+  width: 100%;
+  color: red;
 }
 
 .login__submitBtn {

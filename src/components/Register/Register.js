@@ -2,13 +2,18 @@ import React from 'react';
 import { NavLink } from 'react-router-dom';
 import { ReactComponent as Logo } from '../../images/logo.svg';
 import useForm from '../../hooks/useForm';
-import { nameValidate, emailValidate, passwordValidate } from '../../utils/validators';
+import {
+  nameInputValidate,
+  emailInputValidate,
+  passwordValidate,
+} from '../../utils/validators';
 
-const Register = ({ onRegister }) => {
-  const [isNameError, setIsNameError] = React.useState(false);
-  const [isEmailError, setIsEmailError] = React.useState(false);
-  const [isPassError, setIsPassError] = React.useState(false);
-  const [isSubmitBtnVisible, setIsSubmitButtonVisible] = React.useState(false);
+const Register = ({ onRegister, serverError }) => {
+  const [isFormValid, setIsFormValid] = React.useState(false);
+
+  const [nameErrorMessage, setNameErrorMessage] = React.useState('');
+  const [emailErrorMessage, setEmailErrorMessage] = React.useState(' ');
+  const [passwordErrorMessage, setPasswordErrorMessage] = React.useState(' ');
   const { form, errors, handleChange } = useForm({
     name: '',
     email: '',
@@ -25,36 +30,28 @@ const Register = ({ onRegister }) => {
   }
 
   React.useEffect(() => {
-    if (nameValidate(form.name)) {
-      setIsNameError(false);
-    } else {
-      setIsNameError(true);
-    }
+    setNameErrorMessage(nameInputValidate(form.name));
   }, [form.name]);
 
   React.useEffect(() => {
-    if (emailValidate(form.email)) {
-      setIsEmailError(false);
-    } else {
-      setIsEmailError(true);
-    }
-  },[form.email]);
+    setEmailErrorMessage(emailInputValidate(form.email));
+  }, [form.email]);
 
   React.useEffect(() => {
-    if (passwordValidate(form.password)) {
-      setIsPassError(false);
-    } else {
-      setIsPassError(true);
-    }
-  },[form.password]);
+    setPasswordErrorMessage(passwordValidate(form.password));
+  }, [form.password]);
 
   React.useEffect(() => {
-    if (!isNameError & !isEmailError & !isPassError) {
-      setIsSubmitButtonVisible(true)
-    } else {setIsSubmitButtonVisible(false)}
-  }, [isNameError, isEmailError, isPassError])
-
-
+    if (
+      (nameErrorMessage === '') &
+      (emailErrorMessage === '') &
+      (passwordErrorMessage === '')
+    ) {
+      setIsFormValid(true);
+    } else {
+      setIsFormValid(false);
+    }
+  }, [nameErrorMessage, emailErrorMessage, passwordErrorMessage, form.name, form.email, form.password]);
 
   return (
     <section className="register">
@@ -73,9 +70,7 @@ const Register = ({ onRegister }) => {
             onChange={handleChange}
             value={form.name}
           ></input>
-          <span style={{visibility: isNameError ? 'visible' : 'hidden' }} className="register__span-error">
-            имя должно содержать только латиницу, кириллицу, пробел или дефис
-          </span>
+          <span className="register__span-error">{nameErrorMessage}</span>
         </div>
         <div className="register__input-container">
           <span className="register__label">E-mail</span>
@@ -87,9 +82,7 @@ const Register = ({ onRegister }) => {
             onChange={handleChange}
             value={form.email}
           ></input>
-          <span style={{visibility: isEmailError ? 'visible' : 'hidden' }} className="register__span-error">
-            некорректный email
-          </span>
+          <span className="register__span-error">{emailErrorMessage}</span>
         </div>
         <div className="register__input-container">
           <span className="register__label">Пароль</span>
@@ -103,9 +96,16 @@ const Register = ({ onRegister }) => {
             value={form.password}
             min={4}
           ></input>
-          <span style={{visibility: isPassError ? 'visible' : 'hidden' }} className="register__span-error">слишком короткий пароль</span>
+          <span className="register__span-error">{passwordErrorMessage}</span>
         </div>
-        <button disabled={!isSubmitBtnVisible ? true : false} type="submit" className="register__submitBtn">Зарегистрироваться</button>
+        <span className='register__form-error'>{serverError}</span>
+        <button
+          disabled={!isFormValid ? true : false}
+          type="submit"
+          className="register__submitBtn"
+        >
+          Зарегистрироваться
+        </button>
         <span className="register_register-span">
           Уже зарегистрированы?
           <NavLink className="login__register-link" to="/login">
