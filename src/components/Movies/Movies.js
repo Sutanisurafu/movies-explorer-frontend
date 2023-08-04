@@ -8,7 +8,7 @@ import Footer from '../Footer/Footer';
 
 import { getShortFilms, searchMovies } from '../../utils/utils';
 
-function Movies({ moviesList, onLike, savedMovies, onNav, loggedIn }) {
+function Movies({ moviesList, onLike, savedMovies, onNav, loggedIn, preloaderState }) {
   const localMovies = JSON.parse(localStorage.getItem('foundMovies'));
   const checkBoxState = localStorage.getItem('checkBoxState');
   const searchValue = localStorage.getItem('searchValue');
@@ -36,9 +36,6 @@ function Movies({ moviesList, onLike, savedMovies, onNav, loggedIn }) {
     localStorage.setItem('checkBoxState', !isChecked);
   }
 
-  
-
-
   React.useEffect(() => {
     if (localMovies) {
       setFoundMovies(localMovies);
@@ -51,12 +48,17 @@ function Movies({ moviesList, onLike, savedMovies, onNav, loggedIn }) {
   React.useEffect(() => {
     if (checkBoxState === 'true') {
       setIsChecked(true);
-      // setFoundMovies(getShortFilms(localMovies));
     } else {
       setIsChecked(false);
-      // setFoundMovies(localMovies);
     }
   }, [checkBoxState]);
+
+  React.useEffect(() => {
+    if (preloaderState) {
+      setFoundMovies([]);
+      setIsSearched(true);
+    }
+  }, [preloaderState])
 
   return (
     <>

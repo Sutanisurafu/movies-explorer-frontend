@@ -39,6 +39,7 @@ function App() {
   const [loginServerError, setLoginServerError] = React.useState('');
   const [registerServerError, setRegisterServerError] = React.useState('');
   const [profileServerError, setProfileServerError] = React.useState('');
+  const [preloaderState, setPreloaderState] = React.useState(false);
 
   React.useEffect(() => {
     loggedIn &&
@@ -46,6 +47,7 @@ function App() {
         ([movies, savedMovies]) => {
           setMoviesList(movies);
           setSavedMoviesList(savedMovies);
+          setPreloaderState(true);
         }
       );
   }, [loggedIn]);
@@ -219,6 +221,7 @@ function App() {
             path="/movies"
             element={
               <ProtectedRouteElement
+                preloaderState={preloaderState}
                 element={Movies}
                 loggedIn={loggedIn}
                 onNav={handleNavClick}
