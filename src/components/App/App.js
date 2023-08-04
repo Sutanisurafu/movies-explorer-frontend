@@ -31,14 +31,14 @@ function App() {
   const [isPopupWithNavOpen, setIsPopupWithNavOpen] = React.useState(false);
   const [loggedIn, setLoggedIn] = React.useState(false);
   const [currentUser, setCurrentUser] = React.useState('');
-  const location = useLocation();
+  const [jwt, setJwt] = React.useState(localStorage.getItem('jwt'));
 
   const [moviesList, setMoviesList] = React.useState([]); //Список всех доступных фильмов
   const [savedMoviesList, setSavedMoviesList] = React.useState([]); //список сохранённых(лайкнутых) фильмов
   const [isDataLoading, setIsDataLoading] = React.useState(true);
-  const [loginServerError, setLoginServerError] = React.useState("");
-  const [registerServerError, setRegisterServerError] = React.useState("");
-  const [profileServerError, setProfileServerError] = React.useState("");
+  const [loginServerError, setLoginServerError] = React.useState('');
+  const [registerServerError, setRegisterServerError] = React.useState('');
+  const [profileServerError, setProfileServerError] = React.useState('');
 
   React.useEffect(() => {
     loggedIn &&
@@ -49,8 +49,6 @@ function App() {
         }
       );
   }, [loggedIn]);
-
-
 
   const handleNavClick = () => {
     setIsPopupWithNavOpen(true);
@@ -73,9 +71,15 @@ function App() {
             setCurrentUser(res);
           } else {
             console.log('с токеном что-то не так');
+            handleLogoutClick();
+            setIsDataLoading(false);
           }
         })
-        .catch((err) => console.log(err));
+        .catch((err) => {
+          console.log(err);
+          handleLogoutClick();
+          setIsDataLoading(false);
+        });
     } else {
       console.log('необходима авторизация');
       setIsDataLoading(false);
@@ -91,12 +95,15 @@ function App() {
     authApi
       .register(registerData)
       .then((responseData) => {
-        const loginData = {email: registerData.email, password: registerData.password}
+        const loginData = {
+          email: registerData.email,
+          password: registerData.password,
+        };
         handleLoginSubmit(loginData);
       })
       .catch((err) => {
-        if (err === "Ошибка: 409") {
-          setRegisterServerError("Такой email уже зарегистрирован!")
+        if (err === 'Ошибка: 409') {
+          setRegisterServerError('Такой email уже зарегистрирован!');
         } else {
           console.log(err);
         }
@@ -111,8 +118,8 @@ function App() {
         tokenCheck();
       })
       .catch((err) => {
-        if (err === "Ошибка: 401") {
-          setLoginServerError("Неправильные почта или пароль!")
+        if (err === 'Ошибка: 401') {
+          setLoginServerError('Неправильные почта или пароль!');
         } else {
           console.log(err);
         }
@@ -120,8 +127,8 @@ function App() {
   };
 
   const handleLogoutClick = () => {
-    setLoggedIn(false);
     localStorage.clear();
+    setLoggedIn(false);
     navigate('/main');
   };
 
@@ -135,6 +142,9 @@ function App() {
         })
         .catch((err) => {
           console.log(err);
+          if (err === "Ошибка: 401") {
+            handleLogoutClick();
+          }
         });
     } else {
       const dislikedCard = savedMoviesList.find(
@@ -146,35 +156,43 @@ function App() {
   };
 
   const handleDisLikeClick = (card) => {
-    authApi.deleteMovie(card._id).then((res) => {
-      const filteredMovies = savedMoviesList.filter((movie) => {
-        if (movie._id !== card._id) {
-          return movie;
+    authApi
+      .deleteMovie(card._id)
+      .then((res) => {
+        const filteredMovies = savedMoviesList.filter((movie) => {
+          if (movie._id !== card._id) {
+            return movie;
+          }
+        });
+        setSavedMoviesList(filteredMovies);
+      })
+      .catch((err) => {
+        console.log(err);
+        if (err === "Ошибка: 401") {
+          handleLogoutClick();
         }
       });
-      setSavedMoviesList(filteredMovies);
-    })
-    .catch((err) => {
-      console.log(err)
-    })
   };
 
   const handleProfileSubmit = (value) => {
-    console.log(value)
-    mainApi.editUser(value)
-    .then((res) => {
-      console.log(res)
-      setProfileServerError("Профиль успешно отредактирован!")
-      setTimeout(() => {
-        setProfileServerError("")
-      }, "2500");
-      
-    })
-    .catch((err) => {
-      setProfileServerError("Во время запроса произошла ошибка!")
-      console.log(err)
-    })
-  }
+    console.log(value);
+    mainApi
+      .editUser(value)
+      .then((res) => {
+        console.log(res);
+        setProfileServerError('Профиль успешно отредактирован!');
+        setTimeout(() => {
+          setProfileServerError('');
+        }, '2500');
+      })
+      .catch((err) => {
+        setProfileServerError('Во время запроса произошла ошибка!');
+        console.log(err);
+        if (err === "Ошибка: 401") {
+          handleLogoutClick();
+        }
+      });
+  };
 
   if (isDataLoading) {
     return;
@@ -186,20 +204,15 @@ function App() {
         <Routes>
           <Route path="*" element={<NotFound />} />
 
-          <Route
-            path="/"
-            element={
-                <Navigate to="/main" replace />
-            }
-          />
+          <Route path="/" element={<Navigate to="/main" replace />} />
           <Route
             path="/main"
             element={
-                <>
-                  <Header loggedIn={loggedIn} />
-                  <Main />
-                  <Footer />
-                </>
+              <>
+                <Header loggedIn={loggedIn} />
+                <Main />
+                <Footer />
+              </>
             }
           />
           <Route
@@ -219,13 +232,13 @@ function App() {
             path="/saved-movies"
             element={
               <ProtectedRouteElement
-              loggedIn={loggedIn}
-              onNav={handleNavClick}
-              element={SavedMovies}
-              isSaved={true}
-              onDisLike={handleDisLikeClick}
-              savedMovies={savedMoviesList}
-              moviesList={moviesList}
+                loggedIn={loggedIn}
+                onNav={handleNavClick}
+                element={SavedMovies}
+                isSaved={true}
+                onDisLike={handleDisLikeClick}
+                savedMovies={savedMoviesList}
+                moviesList={moviesList}
               />
             }
           />
@@ -233,22 +246,40 @@ function App() {
             path="/profile"
             element={
               <ProtectedRouteElement
-              serverError={profileServerError}
-              onsubmit={handleProfileSubmit}
-              element={Profile}
-              loggedIn={loggedIn}
-              onNav={handleNavClick}
-              onLogout={handleLogoutClick}
+                serverError={profileServerError}
+                onsubmit={handleProfileSubmit}
+                element={Profile}
+                loggedIn={loggedIn}
+                onNav={handleNavClick}
+                onLogout={handleLogoutClick}
               />
             }
           />
           <Route
             path="/login"
-            element={!loggedIn ? (<Login serverError={loginServerError} onLogin={handleLoginSubmit}/>) : (<Navigate to="/movies" replace/>) }
+            element={
+              !loggedIn ? (
+                <Login
+                  serverError={loginServerError}
+                  onLogin={handleLoginSubmit}
+                />
+              ) : (
+                <Navigate to="/movies" replace />
+              )
+            }
           />
           <Route
             path="/register"
-            element={ !loggedIn ? (<Register serverError={registerServerError} onRegister={handleRegisterSubmit} />) : (<Navigate to="/movies" replace/>)}
+            element={
+              !loggedIn ? (
+                <Register
+                  serverError={registerServerError}
+                  onRegister={handleRegisterSubmit}
+                />
+              ) : (
+                <Navigate to="/movies" replace />
+              )
+            }
           />
         </Routes>
         <PopupWithNav onClose={handleClosePopup} isOpen={isPopupWithNavOpen} />
