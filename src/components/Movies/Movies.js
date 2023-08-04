@@ -37,6 +37,12 @@ function Movies({ moviesList, onLike, savedMovies, onNav, loggedIn, preloaderSta
   }
 
   React.useEffect(() => {
+    if (preloaderState) {
+      // setFoundMovies([]);
+    }
+  }, [preloaderState])
+
+  React.useEffect(() => {
     if (localMovies) {
       setFoundMovies(localMovies);
       setIsSearched(true);
@@ -53,12 +59,7 @@ function Movies({ moviesList, onLike, savedMovies, onNav, loggedIn, preloaderSta
     }
   }, [checkBoxState]);
 
-  React.useEffect(() => {
-    if (preloaderState) {
-      setFoundMovies([]);
-      setIsSearched(true);
-    }
-  }, [preloaderState])
+
 
   return (
     <>
@@ -78,8 +79,8 @@ function Movies({ moviesList, onLike, savedMovies, onNav, loggedIn, preloaderSta
               foundMovies={isChecked ? getShortFilms(foundMovies) : foundMovies}
             />
           </>
-        ) : (
-          <Preloader />
+        ) : ( !preloaderState ? <Preloader /> : <h2 className='section-movies__title'>Введите текст запроса и нажмите кнопку поиска</h2>
+          
         )}
       </main>
       <Footer />

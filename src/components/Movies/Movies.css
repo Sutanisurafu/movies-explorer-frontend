@@ -5,6 +5,11 @@
   max-width: 100vw;
 }
 
+.section-movies__title {
+  width: 100%;
+  text-align: center;
+}
+
 .section-movies__more-btn {
   width: 320px;
   height: 36px;
