@@ -38,6 +38,7 @@ function App() {
   const [isDataLoading, setIsDataLoading] = React.useState(true);
   const [loginServerError, setLoginServerError] = React.useState("");
   const [registerServerError, setRegisterServerError] = React.useState("");
+  const [profileServerError, setProfileServerError] = React.useState("");
 
   React.useEffect(() => {
     loggedIn &&

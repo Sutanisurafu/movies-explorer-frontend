@@ -23,24 +23,18 @@ function Movies({ moviesList, onLike, savedMovies, onNav, loggedIn }) {
     localStorage.setItem('foundMovies', JSON.stringify(searchResult));
     localStorage.setItem('searchValue', value);
     setIsSearched(true);
-    if (isChecked) {
-      setFoundMovies(getShortFilms(searchResult));
-    } else {
-      setFoundMovies(searchResult);
-    }
+    setFoundMovies(searchResult)
+    // if (isChecked) {
+    //   setFoundMovies(getShortFilms(searchResult));
+    // } else {
+    //   setFoundMovies(searchResult);
+    // }
   }
 
   function handleCheckBoxClick() {
     setIsChecked(!isChecked);
     localStorage.setItem('checkBoxState', !isChecked);
   }
-
-  React.useEffect(() => {
-    if (moviesList) {
-      setIsSearched(true);
-      setFoundMovies([])
-    }
-  }, [moviesList])
 
   React.useEffect(() => {
     if (localMovies) {
@@ -54,10 +48,8 @@ function Movies({ moviesList, onLike, savedMovies, onNav, loggedIn }) {
   React.useEffect(() => {
     if (checkBoxState === 'true') {
       setIsChecked(true);
-      setFoundMovies(getShortFilms(localMovies));
     } else {
       setIsChecked(false);
-      setFoundMovies(localMovies);
     }
   }, [checkBoxState]);
 
@@ -76,7 +68,7 @@ function Movies({ moviesList, onLike, savedMovies, onNav, loggedIn }) {
               savedMovies={savedMovies}
               onLike={onLike}
               isChecked={isChecked}
-              foundMovies={foundMovies}
+              foundMovies={isChecked ? getShortFilms(foundMovies) : foundMovies}
             />
           </>
         ) : (
