@@ -78,7 +78,7 @@ function App() {
     } else {
       console.log('необходима авторизация');
       setIsDataLoading(false);
-      navigate("/login")
+      navigate('/main');
     }
   };
 
@@ -182,11 +182,7 @@ function App() {
           <Route
             path="/"
             element={
-              loggedIn ? (
-                <Navigate to="/movies" replace />
-              ) : (
-                <Navigate to="/login" replace />
-              )
+                <Navigate to="/main" replace />
             }
           />
           <Route
