@@ -36,6 +36,13 @@ function Movies({ moviesList, onLike, savedMovies, onNav, loggedIn }) {
   }
 
   React.useEffect(() => {
+    if (moviesList) {
+      setIsSearched(true);
+      setFoundMovies([])
+    }
+  }, [moviesList])
+
+  React.useEffect(() => {
     if (localMovies) {
       setFoundMovies(localMovies);
       setIsSearched(true);
@@ -47,7 +54,7 @@ function Movies({ moviesList, onLike, savedMovies, onNav, loggedIn }) {
   React.useEffect(() => {
     if (checkBoxState === 'true') {
       setIsChecked(true);
-        setFoundMovies(getShortFilms(localMovies));
+      setFoundMovies(getShortFilms(localMovies));
     } else {
       setIsChecked(false);
       setFoundMovies(localMovies);

@@ -10,7 +10,6 @@ function Navigation({ onNav, loggedIn }) {
 
   
   function handleNavigationChange() {
-    console.log(loggedIn)
     if (loggedIn) {
       if (width > 800) {
         setNavigationContainer(
