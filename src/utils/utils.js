@@ -24,11 +24,13 @@ export const sliceMoviesList = (moviesList, start, end) => {
 }
 
 export const getShortFilms = (moviesList) => {
-  const shortMoviesList = moviesList.filter((movie) => {
-    if (movie.duration <= 40) { return movie}
-  })
-
-  return shortMoviesList;
+  console.log(moviesList !== null)
+  if (moviesList !== null) {
+    const shortMoviesList = moviesList.filter((movie) => {
+      if (movie.duration <= 40) { return movie}
+    })
+    return shortMoviesList;
+  } else {return []}
 }
 
 export const getTimeFromMins = (mins) => {

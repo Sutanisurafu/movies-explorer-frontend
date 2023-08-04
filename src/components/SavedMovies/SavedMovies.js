@@ -6,7 +6,7 @@ import MoviesCardList from '../MoviesCardList/MoviesCardList';
 import authApi from '../../utils/MainApi';
 import { getShortFilms, searchMovies } from '../../utils/utils';
 
-function SavedMovies({ moviesList, savedMovies, onDisLike }) {
+function SavedMovies({ moviesList, savedMovies, onDisLike, loggedIn, onNav }) {
   const [isChecked, setIsChecked] = React.useState(false);
   const [foundMovies, setFoundMovies] = React.useState(savedMovies);
 
@@ -50,7 +50,7 @@ function SavedMovies({ moviesList, savedMovies, onDisLike }) {
   return (
     <>
 
-      <Header />
+      <Header loggedIn={loggedIn} onNav={onNav} />
       <main className="section-favorite">
         <SearchForm
           onCheckBox={handleCheckBoxClick}

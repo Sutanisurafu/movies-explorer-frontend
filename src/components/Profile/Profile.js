@@ -4,7 +4,7 @@ import { CurrentUserContextObj } from '../../contexts/CurrentUserContext';
 import useForm from '../../hooks/useForm';
 import { nameInputValidate, emailInputValidate } from '../../utils/validators';
 
-const Profile = ({ onLogout, onsubmit }) => {
+const Profile = ({ onLogout, onsubmit, loggedIn, onNav }) => {
   const currentUser = React.useContext(CurrentUserContextObj);
 
   const [isFormValid, setIsFormValid] = React.useState(false);
@@ -56,7 +56,7 @@ const Profile = ({ onLogout, onsubmit }) => {
 
   return (
     <>
-      <Header />
+      <Header loggedIn={loggedIn} onNav={onNav} />
       <section className="profile">
         <h1 className="profile__title">Привет, {currentUser.name}</h1>
         <form onSubmit={handleSubmit} className="profile__form">

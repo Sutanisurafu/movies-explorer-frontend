@@ -8,9 +8,7 @@ import Footer from '../Footer/Footer';
 
 import { getShortFilms, searchMovies } from '../../utils/utils';
 
-function Movies({ moviesList, onLike, savedMovies, onNav }) 
-{
-
+function Movies({ moviesList, onLike, savedMovies, onNav, loggedIn }) {
   const localMovies = JSON.parse(localStorage.getItem('foundMovies'));
   const checkBoxState = localStorage.getItem('checkBoxState');
   const searchValue = localStorage.getItem('searchValue');
@@ -19,12 +17,10 @@ function Movies({ moviesList, onLike, savedMovies, onNav })
   const [foundMovies, setFoundMovies] = React.useState([]); //найденые фильмы после поиска
   const [isChecked, setIsChecked] = React.useState(false); //состояние чек бокса
 
-
- 
-//тут будет только логика 
+  //тут будет только логика
   function handleSubmit(value) {
     const searchResult = searchMovies(moviesList, value);
-    localStorage.setItem("foundMovies", JSON.stringify(searchResult))
+    localStorage.setItem('foundMovies', JSON.stringify(searchResult));
     localStorage.setItem('searchValue', value);
     setIsSearched(true);
     if (isChecked) {
@@ -34,62 +30,54 @@ function Movies({ moviesList, onLike, savedMovies, onNav })
     }
   }
 
-
   function handleCheckBoxClick() {
-    setIsChecked(!isChecked)
-    localStorage.setItem("checkBoxState", !isChecked)
+    setIsChecked(!isChecked);
+    localStorage.setItem('checkBoxState', !isChecked);
   }
-
 
   React.useEffect(() => {
     if (localMovies) {
-      setFoundMovies(localMovies)
+      setFoundMovies(localMovies);
       setIsSearched(true);
     } else {
       setIsSearched(false);
     }
-  }, [])
+  }, []);
 
-  
   React.useEffect(() => {
-    if (checkBoxState === "true") {
+    if (checkBoxState === 'true') {
       setIsChecked(true);
-      setFoundMovies(getShortFilms(localMovies))
+        setFoundMovies(getShortFilms(localMovies));
     } else {
-      setIsChecked(false)
-      setFoundMovies(localMovies)
-  }}, [checkBoxState])
-
-
-  
-
-
-
+      setIsChecked(false);
+      setFoundMovies(localMovies);
+    }
+  }, [checkBoxState]);
 
   return (
-<>
-<Header onNav={onNav}/>
-    <main className="section-movies">
-      <SearchForm
-      onCheckBox={handleCheckBoxClick}
-      onSearch={handleSubmit}
-      isChecked={isChecked}
-      />
-      {isSearched ? (
-        <>
-          <MoviesCardList
-            savedMovies={savedMovies}
-            onLike={onLike}
-            isChecked={isChecked}
-            foundMovies={foundMovies}
-          />
-        </>
-      ) : (
-        <Preloader />
-      )}
-    </main>
-    <Footer/>
-</>
+    <>
+      <Header onNav={onNav} loggedIn={loggedIn} />
+      <main className="section-movies">
+        <SearchForm
+          onCheckBox={handleCheckBoxClick}
+          onSearch={handleSubmit}
+          isChecked={isChecked}
+        />
+        {isSearched ? (
+          <>
+            <MoviesCardList
+              savedMovies={savedMovies}
+              onLike={onLike}
+              isChecked={isChecked}
+              foundMovies={foundMovies}
+            />
+          </>
+        ) : (
+          <Preloader />
+        )}
+      </main>
+      <Footer />
+    </>
   );
 }
 export default Movies;

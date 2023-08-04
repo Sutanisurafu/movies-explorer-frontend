@@ -188,15 +188,11 @@ function App() {
           <Route
             path="/main"
             element={
-              loggedIn ? (
-                <Navigate to="/movies" replace />
-              ) : (
                 <>
-                  <Header />
+                  <Header loggedIn={loggedIn} />
                   <Main />
                   <Footer />
                 </>
-              )
             }
           />
           <Route
@@ -217,6 +213,7 @@ function App() {
             element={
               <ProtectedRouteElement
               loggedIn={loggedIn}
+              onNav={handleNavClick}
               element={SavedMovies}
               isSaved={true}
               onDisLike={handleDisLikeClick}
@@ -232,6 +229,7 @@ function App() {
               onsubmit={handleProfileSubmit}
               element={Profile}
               loggedIn={loggedIn}
+              onNav={handleNavClick}
               onLogout={handleLogoutClick}
               />
             }

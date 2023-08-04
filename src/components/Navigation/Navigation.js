@@ -3,51 +3,84 @@ import React from 'react';
 import { NavLink } from 'react-router-dom';
 import { useResize } from '../../hooks/use-resize';
 
-function Navigation({ onNav }) {
+function Navigation({ onNav, loggedIn }) {
   const [navigationContainer, setNavigationContainer] = React.useState(<></>);
   const location = useLocation();
   const { width } = useResize();
 
   
   function handleNavigationChange() {
-    switch (location.pathname) {
-      case '/movies':
-      case '/saved-movies':
-      case '/profile':
-        if (width > 800) {
-          setNavigationContainer(
-            <div className="navigation">
-              <nav className="navigation__container navigation__container_type_logged">
-                <NavLink to="/movies" className="navigation__item">
-                  Фильмы
-                </NavLink>
-                <NavLink to="/saved-movies" className="navigation__item">
-                  Сохранённые фильмы
-                </NavLink>
-              </nav>
-              <NavLink to="/profile" className="navigation__user-btn">
-                Аккаунт
-              </NavLink>
-            </div>
-          );
-        } else {
-          setNavigationContainer(
-            <button onClick={onNav} className="hidden-navigation__btn"></button>
-          );
-        }
-        break;
-      default:
+    console.log(loggedIn)
+    if (loggedIn) {
+      if (width > 800) {
         setNavigationContainer(
-          <nav className="navigation__container">
-            <NavLink to="/Register" className="navigation__register-btn">
-              Регистрация
+          <div className="navigation">
+            <nav className="navigation__container navigation__container_type_logged">
+              <NavLink to="/movies" className="navigation__item">
+                Фильмы
+              </NavLink>
+              <NavLink to="/saved-movies" className="navigation__item">
+                Сохранённые фильмы
+              </NavLink>
+            </nav>
+            <NavLink to="/profile" className="navigation__user-btn">
+              Аккаунт
             </NavLink>
-            <NavLink to="/Login" className="navigation__login-btn">
-              Войти
-            </NavLink>
-          </nav>
+          </div>
         );
-    }
+      } else {
+        setNavigationContainer(
+          <button onClick={onNav} className="hidden-navigation__btn"></button>
+        );
+      }
+    } else {setNavigationContainer(
+      <nav className="navigation__container">
+        <NavLink to="/Register" className="navigation__register-btn">
+          Регистрация
+        </NavLink>
+        <NavLink to="/Login" className="navigation__login-btn">
+          Войти
+        </NavLink>
+      </nav>)}
+
+    // switch (location.pathname) {
+    //   case '/movies':
+    //   case '/saved-movies':
+    //   case '/profile':
+    //     if (width > 800) {
+    //       setNavigationContainer(
+    //         <div className="navigation">
+    //           <nav className="navigation__container navigation__container_type_logged">
+    //             <NavLink to="/movies" className="navigation__item">
+    //               Фильмы
+    //             </NavLink>
+    //             <NavLink to="/saved-movies" className="navigation__item">
+    //               Сохранённые фильмы
+    //             </NavLink>
+    //           </nav>
+    //           <NavLink to="/profile" className="navigation__user-btn">
+    //             Аккаунт
+    //           </NavLink>
+    //         </div>
+    //       );
+    //     } else {
+    //       setNavigationContainer(
+    //         <button onClick={onNav} className="hidden-navigation__btn"></button>
+    //       );
+    //     }
+    //     break;
+    //   default:
+        // setNavigationContainer(
+        //   <nav className="navigation__container">
+        //     <NavLink to="/Register" className="navigation__register-btn">
+        //       Регистрация
+        //     </NavLink>
+        //     <NavLink to="/Login" className="navigation__login-btn">
+        //       Войти
+        //     </NavLink>
+        //   </nav>
+        // );
+    // }
   }
 
   React.useEffect(() => {
