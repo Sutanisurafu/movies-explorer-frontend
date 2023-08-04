@@ -55,44 +55,6 @@ function MoviesCardList({ foundMovies, isChecked, onLike, onDisLike, savedMovies
     }
   }, [showedMovies]);
 
-  //если savedMovies то рендерю массив сохраненных карточек без кнопки more
-  //   return !foundMovies.length ? (
-  //     <h2 className="cardlist-section__title">ничего не найдено</h2>
-  //   ) : ( isFavorites ? <div className="cardlist-section">
-  //   {showedMovies.map((movieCard) => {
-  //     return (
-  //       <MovieCard card={movieCard} key={movieCard.id} onLike={onLike} />
-  //     );
-  //   })}
-  // </div> :
-  // <>
-
-  //   <div className="cardlist-section">
-  //     {showedMovies.map((movieCard) => {
-  //       return (
-  //         <MovieCard card={movieCard} key={movieCard.id} onLike={onLike} />
-  //       );
-  //     })}
-  //   </div>
-  //   <button
-  //     onClick={() => {
-  //       setShowedMovies(
-  //         sliceMoviesList([
-  //           ...showedMovies,
-  //           ...sliceMoviesList(
-  //             foundMovies,
-  //             showedMovies.length,
-  //             showedMovies.length + numberOfAddedMovies
-  //           ),
-  //         ])
-  //       );
-  //     }}
-  //     className={moreBtnClassName}
-  //   >
-  //     Ещё
-  //   </button>
-  // </>
-  //   );
 
   return (
 
