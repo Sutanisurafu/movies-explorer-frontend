@@ -4,7 +4,7 @@ import { CurrentUserContextObj } from '../../contexts/CurrentUserContext';
 import useForm from '../../hooks/useForm';
 import { nameInputValidate, emailInputValidate } from '../../utils/validators';
 
-const Profile = ({ onLogout, onsubmit, loggedIn, onNav }) => {
+const Profile = ({ onLogout, onsubmit, loggedIn, onNav, serverError }) => {
   const currentUser = React.useContext(CurrentUserContextObj);
 
   const [isFormValid, setIsFormValid] = React.useState(false);
@@ -12,7 +12,6 @@ const Profile = ({ onLogout, onsubmit, loggedIn, onNav }) => {
   const [nameErrorMessage, setNameErrorMessage] = React.useState('');
   const [emailErrorMessage, setEmailErrorMessage] = React.useState('');
 
-  const [isEditBtnActive, setIsEditBtnActive] = React.useState(false);
 
   const { form, errors, handleChange } = useForm({
     name: currentUser.name,
@@ -89,6 +88,7 @@ const Profile = ({ onLogout, onsubmit, loggedIn, onNav }) => {
               {emailErrorMessage}
             </span>
           </div>
+          <span className='profile__form-span'>{serverError}</span>
           <button
             disabled={isFormValid ? false : true}
             className="profile__edit-btn"

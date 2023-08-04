@@ -164,8 +164,14 @@ function App() {
     mainApi.editUser(value)
     .then((res) => {
       console.log(res)
+      setProfileServerError("Профиль успешно отредактирован!")
+      setTimeout(() => {
+        setProfileServerError("")
+      }, "2500");
+      
     })
     .catch((err) => {
+      setProfileServerError("Во время запроса произошла ошибка!")
       console.log(err)
     })
   }
@@ -227,6 +233,7 @@ function App() {
             path="/profile"
             element={
               <ProtectedRouteElement
+              serverError={profileServerError}
               onsubmit={handleProfileSubmit}
               element={Profile}
               loggedIn={loggedIn}

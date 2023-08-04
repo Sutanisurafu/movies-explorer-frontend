@@ -36,6 +36,7 @@ function Movies({ moviesList, onLike, savedMovies, onNav, loggedIn }) {
     localStorage.setItem('checkBoxState', !isChecked);
   }
 
+  
 
 
   React.useEffect(() => {
