@@ -30,6 +30,7 @@
 }
 
 .register__form {
+  position: relative;
   display: flex;
   flex-direction: column;
 }
@@ -49,6 +50,7 @@
   font-style: normal;
   font-weight: 400;
   line-height: normal;
+  position: relative;
 }
 
 .register__input:focus {
@@ -71,6 +73,15 @@
   margin-top: 24px;
 }
 
+.register__form-error {
+  text-align: center;
+  position: absolute;
+  bottom: 80px;
+  width: 100%;
+  color: red;
+
+}
+
 .register__submitBtn { 
   margin: 125px auto 16px;
   width: 396px;
@@ -85,6 +96,15 @@
   font-weight: 500;
   line-height: normal;
   border-radius: 6px;
+}
+
+.register__submitBtn:disabled {
+  opacity: 0.3;
+}
+
+.register__submitBtn:disabled:hover {
+  opacity: 0.3;
+  cursor:no-drop;
 }
 
 .register__submitBtn:hover {
@@ -122,6 +142,19 @@
   opacity: 0.6;
   cursor: pointer;
 }
+
+.register__input-container {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+}
+.register__span-error {
+  position: absolute;
+  top: 44px;
+  color: red;
+  font-size: 11px;
+}
+
 
 @media screen and (max-width: 800px) {
   .register {

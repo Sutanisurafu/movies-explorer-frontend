@@ -49,6 +49,10 @@
   line-height: 18px;
 }
 
+.navigation__item_active {
+  font-weight: 600;
+}
+
 .navigation__item:hover {
   opacity: 0.6;
 }

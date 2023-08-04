@@ -19,6 +19,10 @@
   font-weight: 500;
   line-height: normal;
   margin: 14px 0 0 0;
+  max-width: 186px;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
 }
 
 .movie-card__duration {
@@ -31,6 +35,11 @@
   line-height: normal;
 }
 
+.movie-card__image {
+  width: 364px;
+  height: 203px;
+}
+
 .movie-card__favorite-btn {
   width: 30px;
   height: 30px;
@@ -39,6 +48,10 @@
   background-color: transparent;
   border: none;
   cursor: pointer;
+}
+
+.movie-card__favorite-btn_active {
+  background-image: url(../../images/favorite-btn_active.svg);
 }
 
 .movie-card__favorite-btn:hover {

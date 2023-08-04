@@ -3,7 +3,7 @@ import Promo from '../Promo/Promo'
 import AbouteProject from '../AboutProject/AbouteProject'
 import Techs from "../Techs/Techs";
 import AboutMe from "../AboutMe/AboutMe";
-
+import moviesApi from "../../utils/MoviesApi";
 
 
 function Main() {

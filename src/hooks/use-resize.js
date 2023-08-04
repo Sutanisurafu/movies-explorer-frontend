@@ -1,7 +1,7 @@
 // use-resize.js
 import { useState, useEffect } from 'react';
 import {
-  SCREEN_MOBILE, SCREEN_S, SCREEN_M, SCREEN_L, SCREEN_XL,
+  SCREEN_MOBILE, SCREEN_S, SCREEN_XL,
 } from '../utils/constants';
 
 export const useResize = () => {
@@ -9,7 +9,10 @@ export const useResize = () => {
 
   useEffect(() => {
     const handleResize = (event) => {
-      setWidth(event.target.innerWidth);
+      // Add a setTimeout with a delay of 200 milliseconds (adjust as needed)
+      setTimeout(() => {
+        setWidth(event.target.innerWidth);
+      }, 500);
     };
     window.addEventListener('resize', handleResize);
     return () => {
@@ -20,9 +23,7 @@ export const useResize = () => {
   return {
     width,
     isScreenMobile: width <= SCREEN_MOBILE,
-    isScreenSm: width >= SCREEN_S,
-    isScreenMd: width >= SCREEN_M,
-    isScreenLg: width >= SCREEN_L,
-    isScreenXl: width >= SCREEN_XL,
+    isScreenX: width >= SCREEN_S & width < SCREEN_XL,
+    isScreenPC: width >= SCREEN_XL,
   };
 };

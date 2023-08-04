@@ -16,6 +16,8 @@
 }
 
 .popup_opened {
+  position: absolute;
+  z-index: 15;
   display: flex;
   opacity: 1;
   visibility: visible;
@@ -23,6 +25,7 @@
 }
 
 .popup__container {
+  z-index: 15;
   background-color: white;
   height: 100%;
   margin-left: auto;
@@ -31,7 +34,6 @@
   align-items: center;
   justify-content: space-between;
   width: 67.7%;
-  position: relative;
 }
 
 .popup__nav-container {
@@ -51,6 +53,10 @@
   font-weight: 500;
   line-height: normal;
   text-decoration: none;
+}
+
+.popup__nav-link_active {
+  text-decoration: underline;
 }
 
 .popup__nav-link:hover {

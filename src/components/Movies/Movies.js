@@ -1,17 +1,90 @@
-import React from "react";
-import SearchForm from "../SearchForm/SearchFom";
-import MoviesCardList from "../MoviesCardList/MoviesCardList";
-import {moviesData} from "../../utils/constants"
+import React from 'react';
+import { useLocation } from 'react-router-dom';
+import SearchForm from '../SearchForm/SearchFom';
+import MoviesCardList from '../MoviesCardList/MoviesCardList';
+import Preloader from '../Preloader/Preloader';
+import Header from '../Header/Header';
+import Footer from '../Footer/Footer';
 
-function Movies() {
+import { getShortFilms, searchMovies } from '../../utils/utils';
+
+function Movies({ moviesList, onLike, savedMovies, onNav, loggedIn, preloaderState }) {
+  const localMovies = JSON.parse(localStorage.getItem('foundMovies'));
+  const checkBoxState = localStorage.getItem('checkBoxState');
+  const searchValue = localStorage.getItem('searchValue');
+
+  const [isSearched, setIsSearched] = React.useState(false); //Был ли совершен поиск?
+  const [foundMovies, setFoundMovies] = React.useState([]); //найденые фильмы после поиска
+  const [isChecked, setIsChecked] = React.useState(false); //состояние чек бокса
+
+  //тут будет только логика
+  function handleSubmit(value) {
+    const searchResult = searchMovies(moviesList, value);
+    localStorage.setItem('foundMovies', JSON.stringify(searchResult));
+    localStorage.setItem('searchValue', value);
+    setIsSearched(true);
+    setFoundMovies(searchResult)
+    // if (isChecked) {
+    //   setFoundMovies(getShortFilms(searchResult));
+    // } else {
+    //   setFoundMovies(searchResult);
+    // }
+  }
+
+  function handleCheckBoxClick() {
+    setIsChecked(!isChecked);
+    localStorage.setItem('checkBoxState', !isChecked);
+  }
+
+  React.useEffect(() => {
+    if (preloaderState) {
+      // setFoundMovies([]);
+    }
+  }, [preloaderState])
+
+  React.useEffect(() => {
+    if (localMovies) {
+      setFoundMovies(localMovies);
+      setIsSearched(true);
+    } else {
+      setIsSearched(false);
+    }
+  }, []);
+
+  React.useEffect(() => {
+    if (checkBoxState === 'true') {
+      setIsChecked(true);
+    } else {
+      setIsChecked(false);
+    }
+  }, [checkBoxState]);
+
+
+
   return (
-          <main className="section-movies">
-            <SearchForm/>
+    <>
+      <Header onNav={onNav} loggedIn={loggedIn} />
+      <main className="section-movies">
+        <SearchForm
+          onCheckBox={handleCheckBoxClick}
+          onSearch={handleSubmit}
+          isChecked={isChecked}
+        />
+        {isSearched ? (
+          <>
             <MoviesCardList
-            isSaved={false}
-            moviesData={moviesData}/>
-            <button className="section-movies__more-btn">Ещё</button>
-          </main>
-  )
+              savedMovies={savedMovies}
+              onLike={onLike}
+              isChecked={isChecked}
+              foundMovies={isChecked ? getShortFilms(foundMovies) : foundMovies}
+            />
+          </>
+        ) : ( !preloaderState ? <Preloader /> : <h2 className='section-movies__title'>Введите текст запроса и нажмите кнопку поиска</h2>
+          
+        )}
+      </main>
+      <Footer />
+    </>
+  );
 }
 export default Movies;

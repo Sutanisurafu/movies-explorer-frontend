@@ -16,6 +16,8 @@
   line-height: normal;
 }
 
+
+
 .not-found__subtitle {
   margin-top: 5px;
   margin-bottom: 0;
@@ -40,6 +42,11 @@
   line-height: normal;
   border: none;
   background-color: transparent;
+}
+
+.not-found__back-btn:hover {
+  cursor: pointer;
+  opacity: 0.6;
 }
 
 @media screen and (max-width: 800px) {
