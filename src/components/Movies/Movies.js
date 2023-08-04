@@ -36,6 +36,8 @@ function Movies({ moviesList, onLike, savedMovies, onNav, loggedIn }) {
     localStorage.setItem('checkBoxState', !isChecked);
   }
 
+
+
   React.useEffect(() => {
     if (localMovies) {
       setFoundMovies(localMovies);
@@ -48,8 +50,10 @@ function Movies({ moviesList, onLike, savedMovies, onNav, loggedIn }) {
   React.useEffect(() => {
     if (checkBoxState === 'true') {
       setIsChecked(true);
+      // setFoundMovies(getShortFilms(localMovies));
     } else {
       setIsChecked(false);
+      // setFoundMovies(localMovies);
     }
   }, [checkBoxState]);
 
