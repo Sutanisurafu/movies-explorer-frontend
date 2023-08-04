@@ -12,8 +12,8 @@ const Register = ({ onRegister, serverError }) => {
   const [isFormValid, setIsFormValid] = React.useState(false);
 
   const [nameErrorMessage, setNameErrorMessage] = React.useState('');
-  const [emailErrorMessage, setEmailErrorMessage] = React.useState(' ');
-  const [passwordErrorMessage, setPasswordErrorMessage] = React.useState(' ');
+  const [emailErrorMessage, setEmailErrorMessage] = React.useState('');
+  const [passwordErrorMessage, setPasswordErrorMessage] = React.useState('');
   const { form, errors, handleChange } = useForm({
     name: '',
     email: '',
@@ -28,6 +28,7 @@ const Register = ({ onRegister, serverError }) => {
       password: form.password,
     });
   }
+
 
   React.useEffect(() => {
     setNameErrorMessage(nameInputValidate(form.name));
@@ -52,6 +53,14 @@ const Register = ({ onRegister, serverError }) => {
       setIsFormValid(false);
     }
   }, [nameErrorMessage, emailErrorMessage, passwordErrorMessage, form.name, form.email, form.password]);
+
+  React.useEffect(() => {
+    setNameErrorMessage(" ");
+    setEmailErrorMessage(" ");
+    setPasswordErrorMessage(" ")
+  }, [])
+
+
 
   return (
     <section className="register">

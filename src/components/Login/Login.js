@@ -9,6 +9,7 @@ const Login = ({ onLogin, serverError }) => {
   const [isFormValid, setIsFormValid] = React.useState(false);
   const [emailErrorMessage, setEmailErrorMessage] = React.useState('');
   const [passwordErrorMessage, setPasswordErrorMessage] = React.useState('');
+  const [isSpanVisible, setIsSpanVisible] = React.useState(false);
 
   const { form, errors, handleChange } = useForm({
     email: '',
@@ -22,6 +23,7 @@ const Login = ({ onLogin, serverError }) => {
       password: form.password,
     });
   }
+
 
   React.useEffect(() => {
     setEmailErrorMessage(emailInputValidate(form.email));
@@ -42,6 +44,11 @@ const Login = ({ onLogin, serverError }) => {
       setIsFormValid(true);
     }
   }, [ emailErrorMessage, passwordErrorMessage, form.email, form.password]);
+
+  React.useEffect(() => {
+    setEmailErrorMessage(' ');
+    setPasswordErrorMessage(' ');
+  }, [])
 
 
   return (
