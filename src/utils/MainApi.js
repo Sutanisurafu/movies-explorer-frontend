@@ -105,7 +105,7 @@ class Api {
 }
 
 const mainApi = new Api({
-  baseUrl: 'http://api.movies-lib.nomoreparties.sbs',
+  baseUrl: 'https://api.movies-lib.nomoreparties.sbs',
   headers: { 'Content-Type': 'application/json' },
 });
 // const authApi = new AuthApi("http://localhost:3000");

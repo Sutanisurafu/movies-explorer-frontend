@@ -211,7 +211,7 @@ function App() {
             path="/main"
             element={
               <>
-                <Header loggedIn={loggedIn} />
+                <Header onNav={handleNavClick} loggedIn={loggedIn} />
                 <Main />
                 <Footer />
               </>
